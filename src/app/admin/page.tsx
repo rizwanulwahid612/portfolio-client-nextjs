@@ -262,7 +262,7 @@ export default AdminPage;
 
 
 // const AdminPage= async ()=>{
-//   const res= await fetch ("http://localhost:3005/api/v1/admins",{
+//   const res= await fetch ("`${process.env.BACKEND_URL}`/admins",{
 //     cache:"no-store",
 //   });
 //   const {data}= await res.json();

@@ -34,7 +34,7 @@ const customersd: any = data?.customer?.map(dam => {
   }
 }).filter(Boolean);
 
-console.log(customersd);
+console.log(customersd?.map((vf:any)=>vf?.id));
  const customerNotification= customersd?.map((notif: { notification: any[]; })=>notif?.notification?.map(not=>not?.message))
  console.log(customerNotification)
 

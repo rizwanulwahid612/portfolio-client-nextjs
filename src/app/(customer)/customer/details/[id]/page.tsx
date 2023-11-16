@@ -3,6 +3,7 @@ import EMBreadCrumb from "@/components/ui/EMBreadCrumb/EMBreadCumb";
 //import { useAdminQuery } from "@/redux/api/adminApi";
 import { useCustomerQuery } from "@/redux/api/customerApi";
 import { Card } from 'antd';
+import Image from "next/image";
 
 const { Meta } = Card;
 const customerDetailsPage = ({ params }: any) => {
@@ -26,7 +27,7 @@ const customerDetailsPage = ({ params }: any) => {
  <Card
     hoverable
     style={{ width: 240 }}
-    cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
+    cover={<Image alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
   >
     <Meta title="Europe Street beat" description="www.instagram.com" />
   </Card>

@@ -11,7 +11,9 @@ import CopyLink from "@/components/ui/LinkCopy/LinkCopy";
 import { apointmentdaysInWeeks } from "@/constants/selectConstantOptions";
 import { useAddBookingDataMutation } from "@/redux/api/bookingApi";
 import { useCategoryQuery } from "@/redux/api/categoryApi";
+import { useCustomersQuery } from "@/redux/api/customerApi";
 import { useDebounced } from "@/redux/hooks";
+import { getUserInfo } from "@/services/auth.service";
 import { ReloadOutlined } from "@ant-design/icons";
 
 import { Button, Card, Col, Input, Row, message } from "antd";
@@ -23,13 +25,29 @@ import { useEffect, useState } from "react";
 
 const ServicePage = ({ params }: any) => {
 
-const onFinishFailed = () => {
-    message.error('Submit failed!');
-  };
+
+const query: Record<string, any> = {};
+  const { data, isLoading } = useCustomersQuery({ ...query });
+  
+  const customers:any = data?.customer?.map(dam=>dam?.id);
+    console.log(customers)
+  const {role,userId}=getUserInfo() as any;
+
+const customersd: any = data?.customer?.map(dam => {
+  if (dam?.id === userId) {
+    return dam;
+  }
+}).filter(Boolean);
+
+console.log(customersd);
+const custId=customersd?.map((cdid:any)=>cdid?._id)
+const custIdAsString = custId?.join(', ');
+console.log(custIdAsString)
 
   const addBookingData = async (data: any) => {
     try {
-      const response = await fetch("http://localhost:3005/api/v1/bookings/create-Booking", {
+       const response = await fetch("https://backend-for-event-4gpuhiv09-rizwanulwahid612-gmailcom.vercel.app/api/v1/bookings/create-booking", {
+        // const response = await fetch(`${process?.env?.BACKEND_URL}/bookings/create-booking`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -42,6 +60,7 @@ const onFinishFailed = () => {
       }
 
       const responseData = await response.json();
+      console.log(responseData)
       return responseData;
     } catch (error) {
       window.location.reload();
@@ -72,7 +91,7 @@ const [page, setPage] = useState<number>(1);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [open, setOpen] = useState<boolean>(false);
   const [categoryId, setcategoryId] = useState<string>("");
- const query: Record<string, any> = {};
+
   query["limit"] = size;
   query["page"] = page;
   query["sortBy"] = sortBy;
@@ -98,7 +117,7 @@ console.log(serviceData)
  //@ts-ignore
   const defaultValues = {   
 role:"booking",
-customerID:"652ebf15e0e2a758bf569c1d",
+customerID:custIdAsString,
 serviceIDs:[{
 //categoryId:categoryIds,
 categoryId:'',

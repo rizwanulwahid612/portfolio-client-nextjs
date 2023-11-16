@@ -57,16 +57,16 @@ const CustomerNotification = () => {
       setMessageCount(0);
     }
   }, [open]);
-useEffect(() => {
-     if(isLoggedIn() || !isLoggedIn || role === USER_ROLE.CUSTOMER){
-         setMessageCount(customerNotification);
-         isLoading
-    }
-  }, [isLoading, role]);
+// useEffect(() => {
+//      if(isLoggedIn() || !isLoggedIn || role === USER_ROLE.CUSTOMER){
+//          setMessageCount(customerNotification);
+//          isLoading
+//     }
+//   }, [customerNotification, isLoading, role]);
   return (
     <div>
       <p onClick={showDrawer}><Badges messageCount={messageCount} /></p>
-      <Drawer title="Admin Notifications" placement="right" onClose={onClose} open={open}>
+      <Drawer title="Notifications" placement="right" onClose={onClose} open={open}>
         {customersd?.map((notif: { notification: any[]; }) => notif?.notification?.map(not => (
           <Col span={8} key={not?.id} style={{ margin: 0 }}>
             <Card

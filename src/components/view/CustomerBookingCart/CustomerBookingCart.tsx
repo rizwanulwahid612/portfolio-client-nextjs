@@ -94,7 +94,7 @@ console.log("customerBookingInCardLength:",customerBookingInCardLength)
   return (
     <div>
       <p onClick={showDrawer}><CartBadges messageCount={bookingCount} /></p>
-      <Drawer title="Admin Notifications" placement="right" onClose={onClose} open={open}>
+      <Drawer title="Cart Items" placement="right" onClose={onClose} open={open}>
         {customerBookingInCard?.map((cartbok:any) =>(
           <Col span={8} key={cartbok?.id} style={{ margin: 0 }}>
             <Card

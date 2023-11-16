@@ -139,7 +139,7 @@ const AdminNotification = () => {
   return (
     <div>
       <p onClick={showDrawer}><Badges messageCount={messageCount} /></p>
-      <Drawer title="Admin Notifications" placement="right" onClose={onClose} open={open}>
+      <Drawer title="Notifications" placement="right" onClose={onClose} open={open}>
         {adminsd?.map((notif: { notification: any[]; }) => notif?.notification?.map(not => (
           <Col span={8} key={not?.id} style={{ margin: 0 }}>
             <Card

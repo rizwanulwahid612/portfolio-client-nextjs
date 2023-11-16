@@ -38,11 +38,7 @@ const ReviewTable = ({categoryId,reviewIds}:{categoryId:string,reviewIds:[]}) =>
          <Row style={{display:"block"}} gutter={{ xs: 24, xl: 8, lg: 8, md: 24 }}>
          
             <Col span={12} style={{ margin: "10px 0" }}>
-             <FormInput name="rating" label="Rating" >
-                
-             </FormInput>
-              
-              
+             <FormInput name="rating" label="Rating" />  
            </Col>
             <Col span={12} style={{ margin: "10px 0" }}>
              <FormInput name="comment" label="Comment" />

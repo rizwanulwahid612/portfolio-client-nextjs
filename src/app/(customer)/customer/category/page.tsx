@@ -1,6 +1,4 @@
 
-
-
 "use client";
 import { Button, Card, Col, Input, Pagination, Row } from "antd";
 import Link from "next/link";

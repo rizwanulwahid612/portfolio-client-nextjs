@@ -3,8 +3,6 @@ import React, { useEffect, useState } from 'react';
 import PublicCard from "@/components/view/Public/PublicCard";
 import Link from "next/link";
 
- 
-
 const Services = () => {
   const [categoryData, setCategoryData] = useState({ data: [], meta:{
     total:0,page:0,limit:0
@@ -13,7 +11,7 @@ const Services = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:3005/api/v1/categories", {
+        const response = await fetch(`https://backend-for-event-4gpuhiv09-rizwanulwahid612-gmailcom.vercel.app/api/v1/categories`, {
           next: {
             revalidate: 24 * 60 * 60,
             tags: ["available-services"],
@@ -83,7 +81,7 @@ export default Services;
 // import Link from "next/link";
 
 // const Services = async () => {
-//   const res= await fetch("http://localhost:3005/api/v1/categories",{
+//   const res= await fetch("`${process.env.BACKEND_URL}`/categories",{
 //        next: {
 //       revalidate: 24 * 60 * 60, // time based revalidation
 //       //on demand revalidation

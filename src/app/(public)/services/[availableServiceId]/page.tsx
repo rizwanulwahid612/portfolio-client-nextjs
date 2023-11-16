@@ -6,7 +6,7 @@ const SingleAvailableServicePublic = async ({
   };
 }) => {
   const availableServices = await fetch(
-    `${process.env.BACKEND_URL}/categories/${availableServiceId}`,
+    `https://backend-for-event-dyhl9sx57-rizwanulwahid612-gmailcom.vercel.app/api/v1/categories/${availableServiceId}`,
     {
       next: {
         revalidate: 24 * 60 * 60, // time based revalidation
