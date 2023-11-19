@@ -24,7 +24,7 @@ const ServicePage = ({ params }: any) => {
 
   const fetchData = async (data: any) => {
     try {
-      const response = await fetch("https://backend-for-event-h06hhn8ji-rizwanulwahid612-gmailcom.vercel.app/api/v1/bookings/create-Booking", {
+      const response = await fetch("https://backend-for-event-b03i2adhl-rizwanulwahid612-gmailcom.vercel.app/api/v1/bookings/create-Booking", {
         cache:'no-store',
         method: "POST", // Specify the HTTP method as POST
         headers: {

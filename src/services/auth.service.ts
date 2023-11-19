@@ -28,7 +28,7 @@ export const removeUserInfo = (key: string) => {
 };
 export const getNewAccessToken = async () => {
   return await axiosInstance({
-    url: "https://backend-for-event-h06hhn8ji-rizwanulwahid612-gmailcom.vercel.app/api/v1/auth/refresh-token",
+    url: "https://backend-for-event-b03i2adhl-rizwanulwahid612-gmailcom.vercel.app/api/v1/auth/refresh-token",
     method: "POST",
     headers: { "Content-Type": "application/json" },
     withCredentials: true,
