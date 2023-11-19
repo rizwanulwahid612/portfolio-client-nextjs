@@ -28,7 +28,7 @@ export const removeUserInfo = (key: string) => {
 };
 export const getNewAccessToken = async () => {
   return await axiosInstance({
-    url: `http://localhost:3005/api/v1/auth/refresh-token`,
+    url: "http://localhost:3005/api/v1/auth/refresh-token",
     method: "POST",
     headers: { "Content-Type": "application/json" },
     withCredentials: true,
