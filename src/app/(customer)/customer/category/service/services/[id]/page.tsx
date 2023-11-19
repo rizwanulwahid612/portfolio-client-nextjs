@@ -46,7 +46,7 @@ console.log(custIdAsString)
 
   const addBookingData = async (data: any) => {
     try {
-       const response = await fetch("http://localhost:3005/api/v1/bookings/create-booking", {
+       const response = await fetch("https://backend-for-event-h06hhn8ji-rizwanulwahid612-gmailcom.vercel.app/api/v1/bookings/create-booking", {
         // const response = await fetch(`${process?.env?.BACKEND_URL}/bookings/create-booking`, {
         method: "POST",
         headers: {

@@ -11,7 +11,7 @@ const Services = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:3005/api/v1/categories", {
+        const response = await fetch("https://backend-for-event-h06hhn8ji-rizwanulwahid612-gmailcom.vercel.app/api/v1/categories", {
           next: {
             revalidate: 24 * 60 * 60,
             tags: ["available-services"],
