@@ -18,7 +18,7 @@ const SingleAvailableServicePublic = async ({
   };
 }) => {
   const availableServices = await fetch(
-    `https://backend-for-event-dyhl9sx57-rizwanulwahid612-gmailcom.vercel.app/api/v1/categories/${id}`,
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/categories/${id}`,
     {
       // next: {
       //  // revalidate: 24 * 60 * 60, // time based revalidation
@@ -34,7 +34,7 @@ const SingleAvailableServicePublic = async ({
   console.log(data)
    console.log(data?.reviewIds)
    const reviewIds=data?.reviewIds?.map((revId: any)=>revId)
-   console.log(reviewIds)
+   console.log(reviewIds,data._id)
   
   return (
     <div>

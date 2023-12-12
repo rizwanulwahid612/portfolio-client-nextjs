@@ -94,7 +94,7 @@ const CategoryPage = () => {
 
       <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
         <Row gutter={6} style={{ margin: 0 }}>
-          {categoties?.map((categorydata) => (
+          {categoties?.map((categorydata:any) => (
             <Col span={8} key={categorydata?.id} style={{ marginBottom: "20px" }}>
               <Card
                 title={''}

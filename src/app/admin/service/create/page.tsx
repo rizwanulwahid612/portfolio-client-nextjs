@@ -33,7 +33,7 @@ const CreateServicePage = () => {
       // console.log(formData)
       console.log(values)
         await addService(values);
-      console.log(addService(values))
+      //console.log(addService(values))
       message.success("Service created successfully!");
     }catch(error) {
       console.error("Error fetching data:", error);

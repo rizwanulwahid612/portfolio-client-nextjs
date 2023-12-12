@@ -32,7 +32,7 @@ const CreateCategoryPage = () => {
       // console.log(formData)
       console.log(obj)
         await addCategory(obj);
-      console.log(addCategory(obj))
+      //console.log(addCategory(obj))
       message.success("Category created successfully!");
     }catch(error) {
       console.error("Error fetching data:", error);

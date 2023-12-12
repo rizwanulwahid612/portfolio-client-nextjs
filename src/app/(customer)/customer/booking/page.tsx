@@ -29,7 +29,9 @@ const CustomerBooking = () => {
   const query: Record<string, any> = {};
   const { data, isLoading } = useCustomersQuery({ ...query });
   const {data:cartData,isLoading:loading}=useBookingsQuery({...query})
+  //@ts-ignore
   console.log(cartData?.bookings?.map((fr:any)=>fr?.customerID?.id))
+  console.log(cartData)
 
   //const customers: any = data?.customer?.map(dam => dam);
   //console.log(customers)
@@ -42,7 +44,7 @@ const CustomerBooking = () => {
       return dam;
     }
   }).filter(Boolean);
-
+//@ts-ignore
 const customerBookingreq: any = cartData?.bookings?.map((fr:any)=> {
     if (fr?.customerID?.id === userId) {
       return fr;

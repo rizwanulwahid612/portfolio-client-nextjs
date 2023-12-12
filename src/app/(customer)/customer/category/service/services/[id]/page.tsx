@@ -29,11 +29,11 @@ const ServicePage = ({ params }: any) => {
 const query: Record<string, any> = {};
   const { data, isLoading } = useCustomersQuery({ ...query });
   
-  const customers:any = data?.customer?.map(dam=>dam?.id);
+  const customers:any = data?.customer?.map((dam:any)=>dam?.id);
     console.log(customers)
   const {role,userId}=getUserInfo() as any;
 
-const customersd: any = data?.customer?.map(dam => {
+const customersd: any = data?.customer?.map((dam:any) => {
   if (dam?.id === userId) {
     return dam;
   }
@@ -44,10 +44,12 @@ const custId=customersd?.map((cdid:any)=>cdid?._id)
 const custIdAsString = custId?.join(', ');
 console.log(custIdAsString)
 
+
   const addBookingData = async (data: any) => {
     try {
-       const response = await fetch("https://backend-for-event-b03i2adhl-rizwanulwahid612-gmailcom.vercel.app/api/v1/bookings/create-booking", {
+       const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/bookings/create-booking`, {
         // const response = await fetch(`${process?.env?.BACKEND_URL}/bookings/create-booking`, {
+        cache:"no-store",
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -56,11 +58,14 @@ console.log(custIdAsString)
       });
 
       if (!response.ok) {
+        
         throw new Error("Booking is not created");
+        
       }
 
       const responseData = await response.json();
-      console.log(responseData)
+      console.log('Response data:',responseData)
+      
       return responseData;
     } catch (error) {
       window.location.reload();
@@ -68,6 +73,7 @@ console.log(custIdAsString)
       throw error;
     }
   };
+ 
 //const [addBookingData]=useAddBookingDataMutation()
   const onSubmit = async (values: any) => {
     const object = { ...values };
@@ -75,7 +81,7 @@ console.log(custIdAsString)
     try {
       console.log(object);
         await addBookingData(object);
-       console.log("fetchdata(obj):",addBookingData(object))
+       //console.log("fetchdata(obj):",addBookingData(object))
       message.success("Booking added successfully");
     } catch (err: any) {
       console.error("Booking is not created successfully",err.message);

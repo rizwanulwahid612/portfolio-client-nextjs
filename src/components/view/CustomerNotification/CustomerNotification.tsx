@@ -1,4 +1,4 @@
-"use client"
+ "use client"
 import { useAdminsQuery } from '@/redux/api/adminApi';
 import { getUserInfo, isLoggedIn } from '@/services/auth.service';
 import { Button, Card, Col, Drawer } from 'antd';
@@ -13,6 +13,7 @@ const CustomerNotification = () => {
 
   const [open, setOpen] = useState(false);
   const [messageCount, setMessageCount] = useState(0);
+  console.log(messageCount)
 
   const showDrawer = () => {
     setOpen(true);
@@ -26,30 +27,49 @@ const CustomerNotification = () => {
   const query: Record<string, any> = {};
   const { data, isLoading } = useCustomersQuery({ ...query });
 
-  const customers: any = data?.customer?.map(dam => dam?.id);
+  const customers: any = data?.customer?.map((dam:any) => dam?.id);
 
   const { userId,role } = getUserInfo() as any;
 
-  const customersd: any = data?.customer?.map(dam => {
+  const customersd: any = data?.customer?.map((dam:any) => {
     if (dam?.id === userId) {
       return dam;
     }
   }).filter(Boolean);
- 
 
-  const customerNotifications = customersd?.map((notif: { notification: any[]; }) => notif?.notification?.length);
-  console.log("notifiObjects",customerNotifications)
+
+// Reverse the array before mapping notification messages
+ const reversedCustomersd = customersd?.slice()?.reverse();
+ console.log(reversedCustomersd?.map((c:any)=>c?.booking?.map((b:any)=>b?.isConfirm)))
  
-  const customerNotification = customersd?.map((notif: { notification: any[]; }) => notif?.notification?.map(not => not?.message));
+  const bookingconfirmd=reversedCustomersd?.map((c:any)=>c?.booking?.map((b:any)=>b?.role))
+  console.log(bookingconfirmd)
+//  if(!bookingconfirmd){
+//   return reversedCustomersd
+//  }
+// else{
+//   return bookingconfirmd
+// }
+
+
+
+
+const customerNotification = reversedCustomersd?.flatMap((notif: { notification: any[]; }) =>
+  notif?.notification?.slice()?.reverse()
+);
+ //console.log("notificationMessages", customerNotification);
+ 
+  // const customerNotification = customersd?.map((notif: { notification: any[]; }) => notif?.notification?.map(not => not?.message));
   
-  console.log(customerNotification)
+  const custNot =customerNotification?.map((not:any) => not?.message)
+  console.log(custNot)
   useEffect(() => {
     if (!open) {
-      setMessageCount(customerNotification ? customerNotification.reduce((count: any, messages: string | any[]) => count + messages.length, 0) : 0);
+      setMessageCount(custNot ? custNot.reduce((count: any, messages: string | any[]) => count + messages.length, 0) : 0);
     } else {
       setMessageCount(0);
     }
-  }, [open, customerNotification]);
+  }, [open, custNot]);
 
 
   useEffect(() => {
@@ -67,7 +87,7 @@ const CustomerNotification = () => {
     <div>
       <p onClick={showDrawer}><Badges messageCount={messageCount} /></p>
       <Drawer title="Notifications" placement="right" onClose={onClose} open={open}>
-        {customersd?.map((notif: { notification: any[]; }) => notif?.notification?.map(not => (
+        {customerNotification?.map((not:any) => (
           <Col span={8} key={not?.id} style={{ margin: 0 }}>
             <Card
               title={not?.id}
@@ -76,16 +96,14 @@ const CustomerNotification = () => {
             >
               <Meta title="Europe Street beat" description="www.instagram.com" />
               <p>{not?.message}</p>
-              {/* <p>{open ? 0 : messageCount}</p> */}
+              {/* <p>{bookingconfirmd}</p> */}
             </Card>
           </Col>
-        )))}
+        ))}
       </Drawer>
     </div>
   );
 }
 
 export default CustomerNotification;
-
-
 

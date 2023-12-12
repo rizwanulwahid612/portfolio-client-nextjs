@@ -24,16 +24,16 @@ const CustomerProfilePage =  () => {
   const query: Record<string, any> = {};
   const { data, isLoading } = useCustomersQuery({ ...query });
   
-  const customers:any = data?.customer?.map(dam=>dam?.id);
+  const customers:any = data?.customer?.map((dam:any)=>dam?.id);
     console.log(customers)
   const {role,userId}=getUserInfo() as any;
 
-const customersd: any = data?.customer?.map(dam => {
+const customersd: any = data?.customer?.map((dam:any) => {
   if (dam?.id === userId) {
     return dam;
   }
 }).filter(Boolean);
-
+console.log(customersd)
 console.log(customersd?.map((vf:any)=>vf?.id));
  const customerNotification= customersd?.map((notif: { notification: any[]; })=>notif?.notification?.map(not=>not?.message))
  console.log(customerNotification)

@@ -66,26 +66,37 @@ const router = useRouter();
     query["searchTerm"] = debouncedSearchTerm;
   }
   const { data, isLoading } = useBookingsQuery({ ...query });
-
+//@ts-ignore
   const bookings = data?.bookings;
+  //@ts-ignore
    const meta = data?.meta;
   //console.log("bookingisConfirm:",data?.bookings.map(book=>book.isConfirm))
+  //@ts-ignore
  const confa:any=data?.bookings.map((book:any)=>book.isConfirm)
  console.log(confa)
+ //@ts-ignore
   const bookId=data?.bookings.map((books:any)=>books?._id)
   console.log("bookId:",bookId)
+  //@ts-ignore
   console.log("bookingId:",data?.bookings.map((books:any)=>books?._id))
+  //@ts-ignore
    console.log("serviceName:",data?.bookings?.map((book:any)=>book?.serviceIDs))
+   //@ts-ignore
   const sername= data?.bookings?.map((book:any)=>book?.serviceIDs?.map((fdr:any)=>fdr?.categoryId?.name))
   console.log("ServiceName:",sername)
+  //@ts-ignore
    const sernaId= data?.bookings?.map((book:any)=>book?.serviceIDs?.map((fdr:any)=>fdr?.categoryId?._id))
    console.log("serviceId:",sernaId)
+   //@ts-ignore
    const customerid=data?.bookings?.map((book:any)=>book?.customerID?._id)
    console.log("customrtId:",customerid)
+   //@ts-ignore
    const appweek=data?.bookings?.map((book:any)=>book?.serviceIDs?.map((fdr:any)=>fdr?.apointmentdaysInWeek))
    console.log("appweek:",appweek)
+   //@ts-ignore
    const stTime=data?.bookings?.map((book:any)=>book?.serviceIDs?.map((fdr:any)=>fdr?.startTime))
    console.log("appweek:",stTime)
+   //@ts-ignore
    const edTime=data?.bookings?.map((book:any)=>book?.serviceIDs?.map((fdr:any)=>fdr?.endTime))
    console.log("appweek:",edTime)
    //const isdele=data?.bookings?.map(book=>book?.serviceIDs?.map((fdr:any)=>fdr))

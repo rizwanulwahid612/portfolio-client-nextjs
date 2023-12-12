@@ -104,30 +104,33 @@ const AdminNotification = () => {
   const query: Record<string, any> = {};
   const { data, isLoading } = useAdminsQuery({ ...query });
 
-  const admins: any = data?.admins.map(dam => dam?.id);
+  const admins: any = data?.admins.map((dam:any) => dam?.id);
 
   const { userId } = getUserInfo() as any;
 
-  const adminsd: any = data?.admins?.map(dam => {
+  const adminsd: any = data?.admins?.map((dam:any) => {
     if (dam?.id === userId) {
       return dam;
     }
   }).filter(Boolean);
  
-
-  let adminNotifications = adminsd?.map((notif: { notification: any[]; }) => notif?.notification?.map(u=>u));
+const reversedAdminsd = adminsd?.slice()?.reverse();
+  let adminNotifications = reversedAdminsd?.flatMap((notif: { notification: any[]; }) => notif?.notification?.map(u=>u));
   console.log("notifiObjects",adminNotifications)
- 
-  const adminNotification = adminsd?.map((notif: { notification: any[]; }) => notif?.notification?.map(not => not?.message));
+  
+ const adminNotification = reversedAdminsd?.map((notif: { notification: any[]; }) => notif?.notification?.slice()?.reverse());
+ const admnotid= adminNotification?.map((not:any) => not?.map((n:any)=>n.message));
+  console.log(admnotid)
+ //  const adminNotification = adminsd?.map((notif: { notification: any[]; }) => notif?.notification?.map(not => not?.message));
   
   console.log(adminNotification)
   useEffect(() => {
     if (!open) {
-      setMessageCount(adminNotification ? adminNotification.reduce((count: any, messages: string | any[]) => count + messages.length, 0) : 0);
+      setMessageCount(admnotid ? admnotid.reduce((count: any, messages: string | any[]) => count + messages.length, 0) : 0);
     } else {
       setMessageCount(0);
     }
-  }, [open, adminNotification]);
+  }, [open, admnotid]);
 
 
   useEffect(() => {
@@ -140,7 +143,7 @@ const AdminNotification = () => {
     <div>
       <p onClick={showDrawer}><Badges messageCount={messageCount} /></p>
       <Drawer title="Notifications" placement="right" onClose={onClose} open={open}>
-        {adminsd?.map((notif: { notification: any[]; }) => notif?.notification?.map(not => (
+        {adminNotification?.map((n:any) =>n?.map((not:any)=> (
           <Col span={8} key={not?.id} style={{ margin: 0 }}>
             <Card
               title={not?.id}
@@ -149,7 +152,7 @@ const AdminNotification = () => {
             >
               <Meta title="Europe Street beat" description="www.instagram.com" />
               <p>{not?.message}</p>
-              <p>{open ? 0 : messageCount}</p>
+             
             </Card>
           </Col>
         )))}

@@ -34,7 +34,7 @@ const CreateBlogPage = () => {
       // console.log(formData)
       console.log(values)
         await addBlog(values);
-      console.log(addBlog(values))
+      //console.log(addBlog(values))
       message.success("Blog created successfully!");
     }catch(error) {
       console.error("Error fetching data:", error);
