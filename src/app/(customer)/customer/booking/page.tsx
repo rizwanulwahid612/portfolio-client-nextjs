@@ -7,12 +7,12 @@ import React, { useEffect, useState } from 'react';
 import { ChildProcess } from 'child_process';
 import { useCustomersQuery } from '@/redux/api/customerApi';
 import { useBookingsQuery } from '@/redux/api/bookingApi';
-
-
 import { USER_ROLE } from '@/constants/role';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
+
+import styleCom from './booking.module.css'
 
 const CustomerBooking = () => {
   useEffect(()=>{
@@ -61,7 +61,7 @@ const customerBookingreq: any = cartData?.bookings?.map((fr:any)=> {
 
 return(
   <div>
-       <div style={{ marginBottom: '20px' }}>
+       <div className={styleCom.main} style={{ marginBottom: '20px' }}>
         <Row gutter={6} style={{ margin: 0 }}>
           {customersd?.map((bok:any)=>bok?.booking.map((fggw:any)=> (
             <Col span={8} key={fggw?.id} style={{ marginBottom: "20px" }}>
