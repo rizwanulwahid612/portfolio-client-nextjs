@@ -8,7 +8,7 @@ import { MenuOutlined } from "@ant-design/icons";
 import { Button, Drawer, Layout, Menu, Typography } from "antd";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const { Header, Content } = Layout;
 const { Title } = Typography;
@@ -45,9 +45,9 @@ const Navbar = ({
 
 
 
-  // useEffect(() => {
-  //   window.scrollTo(0, 0);
-  // }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <Layout className="layout">
@@ -86,7 +86,7 @@ const Navbar = ({
           items={sidebarItems(role)}
         />
       
-     <div>
+     <>
  {role ? (
             <Button
               type="primary"
@@ -104,8 +104,8 @@ const Navbar = ({
               Sign In
             </Button>
           )}
-        </div>
-        <div>
+        </>
+        <>
         <Button type="primary" className="lg:hidden" onClick={showDrawer}>
           <MenuOutlined />
         </Button>
@@ -120,7 +120,7 @@ const Navbar = ({
           >   
           </Menu>
         </Drawer>
-        </div>
+        </>
       </Header>
     </Layout>
   );

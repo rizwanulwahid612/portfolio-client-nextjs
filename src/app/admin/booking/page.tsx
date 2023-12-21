@@ -72,13 +72,13 @@ const router = useRouter();
    const meta = data?.meta;
   //console.log("bookingisConfirm:",data?.bookings.map(book=>book.isConfirm))
   //@ts-ignore
- const confa:any=data?.bookings.map((book:any)=>book.isConfirm)
+ const confa:any=data?.bookings?.map((book:any)=>book.isConfirm)
  console.log(confa)
  //@ts-ignore
-  const bookId=data?.bookings.map((books:any)=>books?._id)
+  const bookId=data?.bookings?.map((books:any)=>books?._id)
   console.log("bookId:",bookId)
   //@ts-ignore
-  console.log("bookingId:",data?.bookings.map((books:any)=>books?._id))
+  console.log("bookingId:",data?.bookings?.map((books:any)=>books?._id))
   //@ts-ignore
    console.log("serviceName:",data?.bookings?.map((book:any)=>book?.serviceIDs))
    //@ts-ignore

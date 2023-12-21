@@ -1,13 +1,11 @@
-
- "use client";
-import { useState, useCallback, useEffect } from 'react';
+"use client";
+import { useState } from 'react';
 import { Button, Card, Col, Input, Row } from 'antd';
 import { useDebounced } from '@/redux/hooks';
 import ActionBar from '@/components/ui/ActionBar/ActionBar';
 import EMBreadCrumb from '@/components/ui/EMBreadCrumb/EMBreadCumb';
 import EMPagination from '@/components/ui/EMTable/EMPagination';
-import { useCategoriesQuery, useDeleteCategoryMutation } from '@/redux/api/categoryApi';
-import { IService } from '@/types';
+import { useCategoriesQuery } from '@/redux/api/categoryApi';
 import { ReloadOutlined } from '@ant-design/icons';
 import Image from 'next/image';
 import Meta from 'antd/es/card/Meta';
@@ -22,6 +20,7 @@ const CategoryPage = ({
   const query: Record<string, any> = {};
   //const [page, setPage] = useState<number>(1);
   //const [size, setSize] = useState<number>(10);
+  const [toggleOrder, setToggleOrder] = useState<boolean>(false);
   const [sortBy, setSortBy] = useState<string>('');
   const [sortOrder, setSortOrder] = useState<string>('');
   const [searchTerm, setSearchTerm] = useState<string>('');
@@ -46,6 +45,7 @@ const { data, isLoading } = useCategoriesQuery({...query});
 
   console.log("categories:",data,)
   const catData=data?.categories?.map((d:any)=>d)
+ // const filterData=data?.categories?.map((d:any)=>d)
   const cartDataLength=data?.categories?.length
   console.log("cartdatalength:",cartDataLength)
   const cartMeta=data?.meta;
@@ -53,11 +53,15 @@ const { data, isLoading } = useCategoriesQuery({...query});
    console.log("meta:",cartMeta)
   const page = searchParams['page'] ?? '1'
   const per_page = searchParams['per_page'] ?? '10'
+ // const name=searchParams['name'] ?? ''
 
   const start =(Number(page)-1)*Number(per_page)
   const end = start + Number(per_page)
   const entries= catData?.slice(start,end)
-
+  const toggleSortOrder = () => {
+  setToggleOrder((prev) => !prev); // Toggling the state between true and false
+  setSortOrder(toggleOrder ? "asc" : "desc"); // Setting sortOrder based on toggle state
+};
     const resetFilters = () => {
      setSortBy('');
      setSortOrder('');
@@ -83,6 +87,7 @@ const { data, isLoading } = useCategoriesQuery({...query});
              width: '20%',
            }}
          />
+         <Button style={{marginBottom:"20px"}} onClick={toggleSortOrder}>{toggleOrder ? "Ascending" : "Descending"}</Button>
          <div>
            {(!!sortBy || !!sortOrder || !!searchTerm) && (
              <Button
@@ -95,6 +100,8 @@ const { data, isLoading } = useCategoriesQuery({...query});
            )}
          </div>
        </ActionBar>
+       
+             
        <>
        <Row gutter={6} style={{ margin: 0 }}>
   {entries?.map((categorydata:any) => (
@@ -116,7 +123,6 @@ const { data, isLoading } = useCategoriesQuery({...query});
         </Row>
         </>
         
-    
       <EMPagination
       //@ts-ignore
         hasNextPage={end < cartDataLength}

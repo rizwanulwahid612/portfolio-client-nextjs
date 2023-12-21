@@ -253,51 +253,6 @@ export default CustomerPage;
 
 
 
-// const AdminPage= async ()=>{
-//   const res= await fetch ("`${process.env.BACKEND_URL}`/admins",{
-//     cache:"no-store",
-//   });
-//   const {data}= await res.json();
-//   console.log(data)
-//   return <div key={data}> {data}</div>
-// }
-// export default AdminPage
-
-
-// "use client";
-
-// import { useAdminsQuery } from "@/redux/api/adminApi";
- 
-// function AdminList() {
-//   const { data, error, isLoading } = useAdminsQuery("");
-//   console.log(data)
-
-//   if (isLoading) {
-//     return <div>Loading...</div>;
-//   }
-//    if(error){
-//     return <div>error is happning.....</div>;
-//    }
-//   if (!data) {
-//     return <div>No data available.</div>;
-//   }
-
-//     return (
-//     <div>
-//       <h1>Admin List</h1>
-//       {data?.data?.map((addata:any)=>{
-//         return <p key={addata.id}>{addata.gender}</p>
-//       })}
-//     </div>
-//   );
- 
-// }
-
-// export default AdminList;
-
-
-
-
 
 
 

@@ -9,7 +9,7 @@ interface EMPaginationProps {
   total:number;
 }
 
-const EMPagination: FC<EMPaginationProps> = ({ hasNextPage, hasPrevPage,total }) => {
+const EMPaginationAdmin: FC<EMPaginationProps> = ({ hasNextPage, hasPrevPage,total }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -18,7 +18,7 @@ const EMPagination: FC<EMPaginationProps> = ({ hasNextPage, hasPrevPage,total })
 
   const handlePageChange = (newPage: number, pageSize?: number) => {
     router.push(
-      `http://localhost:3000/customer/category/?page=${newPage}&per_page=${pageSize || per_page}`
+      `http://localhost:3000/admin/category/?page=${newPage}&per_page=${pageSize || per_page}`
     );
   };
 
@@ -38,7 +38,7 @@ const EMPagination: FC<EMPaginationProps> = ({ hasNextPage, hasPrevPage,total })
   );
 };
 
-export default EMPagination;
+export default EMPaginationAdmin;
 
 
 

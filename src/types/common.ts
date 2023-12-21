@@ -60,6 +60,8 @@ export type IPost = {
   comment: string;
 };
 export type IService = {
+  x: 1;
+  //[x: string]: Key | null | undefined;
   id: string;
   role: string;
   name: string;
