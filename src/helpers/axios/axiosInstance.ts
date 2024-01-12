@@ -38,27 +38,17 @@ instance.interceptors.response.use(
     return responseObject;
   },
   async function (error) {
-    const config = error?.config;
-    if (error?.response?.status === 403 && !config?.sent) {
-      config.sent = true;
-      const response = await getNewAccessToken();
-      console.log(response);
-      const accessToken = response?.data?.accessToken;
-      config.headers["Authorization"] = accessToken;
-      setToLocalStorage(authKey, accessToken);
-      return instance(config);
-      // console.log(response);
+    if (error?.response?.status === 403) {
     } else {
       const responseObject: IGenericErrorResponse = {
         statusCode: error?.response?.data?.statusCode || 500,
         message: error?.response?.data?.message || "Something went wrong",
         errorMessages: error?.response?.data?.message,
       };
-
       return responseObject;
     }
 
-    //return Promise.reject(error);
+    // return Promise.reject(error);
   }
 );
 

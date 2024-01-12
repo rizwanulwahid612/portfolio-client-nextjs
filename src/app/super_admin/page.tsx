@@ -117,12 +117,12 @@ const AdminPage = () => {
         // console.log(data);
         return (
           <>
-            <Link href={`/admin/details/${data}`}>
+            <Link href={`/super_admin/details/${data}`}>
               <Button onClick={() => console.log(data)} type="primary">
                 <EyeOutlined />
               </Button>
             </Link>
-            <Link href={`/admin/edit/${data}`}>
+            <Link href={`/super_admin/edit/${data}`}>
               <Button
                 style={{
                   margin: "0px 5px",
@@ -183,14 +183,14 @@ const AdminPage = () => {
 
   return (
     <div>
-      <EMBreadCrumb
+      {/* <EMBreadCrumb
         items={[
           {
             label: "admin",
             link: "/admin",
           },
         ]}
-      />
+      /> */}
       <ActionBar title="Admin List">
         <Input
           size="large"
@@ -201,7 +201,7 @@ const AdminPage = () => {
           }}
         />
         <div>
-          <Link href="/admin/create">
+          <Link href="/super_admin/create">
             <Button type="primary">Create Admin</Button>
           </Link>
           {(!!sortBy || !!sortOrder || !!searchTerm) && (

@@ -7,7 +7,7 @@ import {
     EyeOutlined,
   ReloadOutlined,
 } from "@ant-design/icons";
-import {  useState } from "react";
+import {  useEffect, useState } from "react";
 import { useDebounced } from "@/redux/hooks";
 import ActionBar from "@/components/ui/ActionBar/ActionBar";
 import EMBreadCrumb from "@/components/ui/EMBreadCrumb/EMBreadCumb";
@@ -17,10 +17,20 @@ import dayjs from "dayjs";
 import { useDeleteServiceMutation, useServicesQuery } from "@/redux/api/serviceApi";
 import EMTable from "@/components/ui/EMTable/EMTable";
 import EMModal from "@/components/ui/EMModel/EMModel";
+import { getUserInfo, isLoggedIn } from "@/services/auth.service";
+import { USER_ROLE } from "@/constants/role";
+import { redirect } from "next/navigation";
 const { Meta } = Card;
 
 
 const ServicePage = () => {
+  useEffect(()=>{
+      const {role,userId}=getUserInfo() as any;
+    console.log(role)
+    if(!isLoggedIn || role !== USER_ROLE.ADMIN){
+         redirect('/login')
+    }
+  },[])
   const query: Record<string, any> = {};
   const [deleteService] = useDeleteServiceMutation();
   const [page, setPage] = useState<number>(1);
@@ -86,17 +96,17 @@ const ServicePage = () => {
    
     {
       title: "Action",
-      dataIndex: "id",
+      dataIndex: "_id",
       render: function (data: any) {
         // console.log(data);
         return (
           <>
-            <Link href={`/admin/details/${data}`}>
+            <Link href={`/admin/service/details/${data}`}>
               <Button onClick={() => console.log(data)} type="primary">
                 <EyeOutlined />
               </Button>
             </Link>
-            <Link href={`/admin/edit/${data}`}>
+            <Link href={`/admin/service/edit/${data}`}>
               <Button
                 style={{
                   margin: "0px 5px",
@@ -141,11 +151,11 @@ const ServicePage = () => {
     setSearchTerm("");
   };
   const deleteServiceHandler = async (id: string) => {
-    // console.log(id);
+     console.log(id);
     try {
       const res = await deleteService(id);
       if (res) {
-        message.success("Service Successfully Deleted!");
+        message.success(" Successfully Deleted!");
 
         setOpen(false);
       }
@@ -159,11 +169,11 @@ const ServicePage = () => {
         items={[
           {
             label: "admin",
-            link: "/admin",
+            link: "/admin/my-profile",
           },
         ]}
       />
-      <ActionBar title="Service List">
+      <ActionBar title="Category List">
         <Input
           size="large"
           placeholder="Search"
@@ -174,7 +184,7 @@ const ServicePage = () => {
         />
         <div>
           <Link href="/admin/service/create">
-            <Button type="primary">Create Service</Button>
+            <Button type="primary">Create Category</Button>
           </Link>
           {(!!sortBy || !!sortOrder || !!searchTerm) && (
             <Button

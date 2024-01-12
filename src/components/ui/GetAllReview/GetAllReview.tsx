@@ -53,7 +53,7 @@ const GetAllReview = () => {
   if (!!debouncedSearchTerm) {
     query["searchTerm"] = debouncedSearchTerm;
   }
-  const { data, isLoading } = useReviewsQuery({ ...query });
+  const { data, isLoading } = useReviewsQuery({ ...query },{refetchOnMountOrArgChange:true,pollingInterval:10000});
 //  const session:any=getSession()
 //  console.log(session?.accessToken)
   const reviews = data?.reviews;
@@ -140,17 +140,7 @@ const GetAllReview = () => {
 //       },
 //     },
 //   ];
-  const onPaginationChange = (page: number, pageSize: number) => {
-    console.log("Page:", page, "PageSize:", pageSize);
-    setPage(page);
-    setSize(pageSize);
-  };
-  const onTableChange = (pagination: any, filter: any, sorter: any) => {
-    const { order, field } = sorter;
-    // console.log(order, field);
-    setSortBy(field as string);
-    setSortOrder(order === "ascend" ? "asc" : "desc");
-  };
+ 
 
   const resetFilters = () => {
     setSortBy("");
@@ -174,27 +164,11 @@ const GetAllReview = () => {
 
   return (
     <div>
-      <EMBreadCrumb
-        items={[
-          {
-            label: "admin",
-            link: "/admin",
-          },
-        ]}
-      />
-      <ActionBar title="Admin List">
-        <Input
-          size="large"
-          placeholder="Search"
-          onChange={(e) => setSearchTerm(e.target.value)}
-          style={{
-            width: "20%",
-          }}
-        />
+
+      <ActionBar title="Review List">
+        
         <div>
-          <Link href="/admin/create">
-            <Button type="primary">Create Admin</Button>
-          </Link>
+
           {(!!sortBy || !!sortOrder || !!searchTerm) && (
             <Button
               style={{ margin: "0px 5px" }}
@@ -219,14 +193,7 @@ const GetAllReview = () => {
         showPagination={true}
       /> */}
 
-      <EMModal
-        title="Remove admin"
-        isOpen={open}
-        closeModal={() => setOpen(false)}
-        handleOk={() => deleteReviewHandler(reviewId)}
-      >
-        <p className="my-5">Do you want to remove this admin?</p>
-      </EMModal>
+     
     </div>
   );
 };

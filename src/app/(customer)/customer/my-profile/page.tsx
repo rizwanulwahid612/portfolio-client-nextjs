@@ -1,18 +1,19 @@
 "use client";
-import { Button, Card, Col, Input, Row, message } from "antd";
-import { Key, useEffect, useReducer, useState } from "react";
-import { useAdminsQuery, useDeleteAdminMutation} from "@/redux/api/adminApi";
+import { Button, Card, Col} from "antd";
+import { useEffect } from "react";
 import EMBreadCrumb from "@/components/ui/EMBreadCrumb/EMBreadCumb";
 import { getUserInfo, isLoggedIn } from "@/services/auth.service";
 import { USER_ROLE } from "@/constants/role";
-import { redirect, useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 import Meta from "antd/es/card/Meta";
 import Image from "next/image";
-import AdminNotification from "@/components/view/AdminNotification/AdminNotificaton";
-import { useCustomersQuery } from "@/redux/api/customerApi";
-import CustomerBookingCart from "@/components/view/CustomerBookingCart/CustomerBookingCart";
+
+import { useCustomersQuery} from "@/redux/api/customerApi";
+
+import Link from "next/link";
 
 const CustomerProfilePage =  () => {
+
 
   useEffect(()=>{
     const {role,userId}=getUserInfo() as any;
@@ -37,14 +38,19 @@ console.log(customersd)
 console.log(customersd?.map((vf:any)=>vf?.id));
  const customerNotification= customersd?.map((notif: { notification: any[]; })=>notif?.notification?.map(not=>not?.message))
  console.log(customerNotification)
+ const deleteBookingHandler = async (id: string) => {
+    console.log(id)
+   
+  };
+ 
 
   return (
     <div>
       <EMBreadCrumb
         items={[
           {
-            label: "customer",
-            link: "/customer",
+            label: "profile",
+            link: "/customer/my-profile",
           },
         ]}
       />
@@ -54,13 +60,29 @@ console.log(customersd?.map((vf:any)=>vf?.id));
           {customersd?.map((admindata: any) => (
             <Col span={8} key={admindata?.id} style={{ margin: 0 }}>
               <Card
-                title={admindata?.id}
+                
                 hoverable
-                style={{ width: 450, justifyContent: 'center', display: 'flex' }}
-                cover={<Image alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" width={300} height={300} />}
+                style={{ width: 390, justifyContent: 'center', display: 'block' }}
+                cover={<Image alt="example" src={admindata?.profileImage} width={300} height={300} />}
               >
-                <Meta title="Europe Street beat" description="www.instagram.com" />
-                <p>{admindata?.id}</p>
+                <Meta title="Profile Information" /> 
+                <div style={{display:'flex',justifyContent:'flex-end',margin:"10px"}} ><Link href={`/customer/my-profile/edit/${admindata?.id}`}><Button type="primary">Edit</Button></Link></div> 
+               
+        
+{ ` `}
+{` `}
+                <p>User Name: {` `}{admindata?.name.firstName}{` `}{admindata?.name.middleName}{` `}{admindata?.name.lastName}</p>
+                <p>Date Of Birth: {` `}{admindata?.dateOfBirth}</p>
+                <p>Gender:{` `} {admindata?.gender}</p>
+                <p>Blood Group: {` `}{admindata?.bloodGroup}</p>
+                <p>Email: {` `}{admindata?.email}</p>
+                <p>Contact No: {` `}{admindata?.contactNo}</p>
+                <p>Emer.Contact: {` `}{admindata?.emergencyContactNo}</p>
+                <p>Present Address: {` `}{admindata?.presentAddress}</p>
+                <p>Permanent Address: {` `}{admindata?.permanentAddress}</p>
+                
+
+
               </Card>
             </Col>
           ))}

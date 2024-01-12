@@ -25,7 +25,7 @@ const CustomerNotification = () => {
   };
 
   const query: Record<string, any> = {};
-  const { data, isLoading } = useCustomersQuery({ ...query });
+  const { data, isLoading } = useCustomersQuery({ ...query },{refetchOnMountOrArgChange:true,pollingInterval:10000});
 
   const customers: any = data?.customer?.map((dam:any) => dam?.id);
 
@@ -94,7 +94,7 @@ const customerNotification = reversedCustomersd?.flatMap((notif: { notification:
               hoverable
               style={{ width: 320, justifyContent: 'center', display: 'flex' }}
             >
-              <Meta title="Europe Street beat" description="www.instagram.com" />
+              
               <p>{not?.message}</p>
               {/* <p>{bookingconfirmd}</p> */}
             </Card>

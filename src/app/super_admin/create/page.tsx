@@ -5,6 +5,7 @@ import FormInput from "@/components/Forms/FormInput";
 import FormSelectField from "@/components/Forms/FormSelectField";
 import FormTextArea from "@/components/Forms/FormTextArea";
 import EMBreadCrumb from "@/components/ui/EMBreadCrumb/EMBreadCumb";
+import { USER_ROLE } from "@/constants/role";
 
 import { selectBloodGroupOptions, selectorGenderOptions } from "@/constants/selectConstantOptions";
 
@@ -12,12 +13,22 @@ import { useAddAdminDataMutation } from "@/redux/api/adminApi";
 
 import { useDepartmentsQuery } from "@/redux/api/departmentApi";
 import { adminSchema } from "@/schemas/admin";
+import { getUserInfo, isLoggedIn } from "@/services/auth.service";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button, Col, Row, message } from "antd";
+import { redirect } from "next/navigation";
+import { useEffect } from "react";
 
 
 
 const CreateAdminPage = () => {
+  useEffect(()=>{
+    const {role,userId}=getUserInfo() as any;
+    console.log(role)
+    if(!isLoggedIn || role !== USER_ROLE.SUPER_ADMIN){
+         redirect('/login')
+    }
+  },[])
   const { data, isLoading } = useDepartmentsQuery({ limit: 100, page: 1 });
   const [addAdminData] = useAddAdminDataMutation();
   //@ts-ignore
@@ -53,7 +64,7 @@ const CreateAdminPage = () => {
         items={[
           {
             label: "admin",
-            link: "/admin",
+            link: "/super_admin",
           },
         ]}
       />
@@ -132,6 +143,21 @@ const CreateAdminPage = () => {
                   name="password"
                   size="large"
                   label="Password"
+                />
+              </Col>
+
+              <Col
+                className="gutter-row"
+                span={8}
+                style={{
+                  marginBottom: "10px",
+                }}
+              >
+                <FormInput
+                  type="text"
+                  name="admin.profileImage"
+                  size="large"
+                  label="profileImage"
                 />
               </Col>
            

@@ -1,6 +1,0 @@
-{
-  "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/admin/my-profile/page": "app/admin/my-profile/page.js",
-  "/admin/booking/page": "app/admin/booking/page.js",
-  "/(public)/login/page": "app/(public)/login/page.js"
-}

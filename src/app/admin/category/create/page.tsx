@@ -5,27 +5,33 @@ import FormInput from "@/components/Forms/FormInput";
 import FormSelectField from "@/components/Forms/FormSelectField";
 import FormTextArea from "@/components/Forms/FormTextArea";
 import EMBreadCrumb from "@/components/ui/EMBreadCrumb/EMBreadCumb";
+import { USER_ROLE } from "@/constants/role";
 //import UploadImage from "@/components/ui/UploadImage.tsx/UploadImage";
-import { selectBloodGroupOptions, selectorGenderOptions } from "@/constants/selectConstantOptions";
+import { apointmentdaysInWeeks, selectBloodGroupOptions, selectorGenderOptions } from "@/constants/selectConstantOptions";
 import { useAddCategoryMutation } from "@/redux/api/categoryApi";
+import { getUserInfo, isLoggedIn } from "@/services/auth.service";
 import { Button, Col, Row, message } from "antd";
-
-
+import { redirect } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const CreateCategoryPage = () => {
-
+useEffect(()=>{
+      const {role,userId}=getUserInfo() as any;
+    console.log(role)
+    if(!isLoggedIn || role !== USER_ROLE.ADMIN){
+         redirect('/login')
+    }
+  },[])
+  const [categoryIds, setCategoryIds] = useState([""]);
+  const addCategoryId = () => {
+    setCategoryIds([...categoryIds, ""]);
+  };
   const [addCategory] = useAddCategoryMutation();
 
   const onSubmit = async (values: any) => {
     console.log(values)
     const obj = { ...values };
-    //const file = obj["file"];
-    //delete obj["file"];
-   // const data = JSON.stringify(obj);
-    // const formData = new FormData();
-    // console.log(formData)
-    //formData.append("file", file as Blob);
-    // formData.append("data", data);
+   
      message.loading("Creating...");
     try {
       // await addAdminData(formData);
@@ -33,7 +39,7 @@ const CreateCategoryPage = () => {
       console.log(obj)
         await addCategory(obj);
       //console.log(addCategory(obj))
-      message.success("Category created successfully!");
+      message.success(" created successfully!");
     }catch(error) {
       console.error("Error fetching data:", error);
       throw error;
@@ -49,17 +55,14 @@ categoryIds:['']
     <div>
       <EMBreadCrumb
         items={[
+         
           {
-            label: "admin",
-            link: "/admin",
-          },
-          {
-            label: "category",
-            link: "/category",
+            label: "service",
+            link: "/admin/category",
           },
         ]}
       />
-      <h1>Create Category</h1>
+      <h1>Create Service</h1>
 
       <div>
         <Form submitHandler={onSubmit}defaultValues={defaultValues} >
@@ -77,7 +80,7 @@ categoryIds:['']
                 marginBottom: "10px",
               }}
             >
-              Category Information
+               Information
             </p>
             <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
               <Col
@@ -95,45 +98,41 @@ categoryIds:['']
                 />
               </Col>
             
-             
-            
-              {/* <Col
-                className="gutter-row"
-                span={8}
-                style={{
-                  marginBottom: "10px",
-                }}
-              >
-                <UploadImage name="file" />
-              </Col> */}
             </Row>
           </div>
 
           {/* basic info */}
           <div
+           style={{
+            border: "1px solid #d9d9d9",
+            borderRadius: "5px",
+            padding: "15px",
+            marginBottom: "10px",
+          }}
+        >
+          <p
             style={{
-              border: "1px solid #d9d9d9",
-              borderRadius: "5px",
-              padding: "15px",
+              fontSize: "18px",
               marginBottom: "10px",
             }}
           >
-            <p
-              style={{
-                fontSize: "18px",
-                marginBottom: "10px",
-              }}
-            >
-              Basic Information
-            </p>
+            Basic Information
+          </p>
             <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-            {defaultValues?.categoryIds?.map((categoryId, index) => (
-            <div key={index}>
+           {categoryIds.map((categoryId, index) => (
+              <Col span={24} style={{ margin: "0" }} key={index}>
+                <FormInput
+                  name={`categoryIds[${index}]`}
+                  size="large"
+                  label={`Category ID ${index + 1}`}
+                />
+              </Col>
+            ))}
             <Col span={24} style={{ margin: "0" }}>
-              <FormInput  name={`categoryIds[${index}]`} size="large" label="Category ID"/>
+              <Button type='primary' onClick={addCategoryId}>
+                Add Category ID
+              </Button>
             </Col>
-            </div>
-          ))}
            
               <Col
                 className="gutter-row"
@@ -170,8 +169,8 @@ categoryIds:['']
                   marginBottom: "10px",
                 }}
               >
-                <FormInput
-                  type="text"
+                <FormSelectField
+                  options={apointmentdaysInWeeks}
                   name="apointmentdaysInWeek"
                   size="large"
                   label="apointmentdaysInWeek"
@@ -199,13 +198,7 @@ categoryIds:['']
                   marginBottom: "10px",
                 }}
               >
-                {/* <FormSelectField
-                  size="large"
-                  name="admin.bloodGroup"
-                  options={selectBloodGroupOptions}
-                  label="Blood group"
-                  placeholder="Select"
-                /> */}
+               
               </Col>
               <Col
                 className="gutter-row"

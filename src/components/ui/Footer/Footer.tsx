@@ -7,7 +7,7 @@ const Footer = () => {
      <FooterPage style={{ textAlign: 'center'}}>
       
      <Reviews/>
-      Ant Design ©2023 Created by Ant UED
+      Ant Design ©2024 Created by Ant UED
       
       </FooterPage>
   )

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import Form from "@/components/Forms/Form";
@@ -8,23 +9,31 @@ import FormSelectField from "@/components/Forms/FormSelectField";
 import ActionBar from "@/components/ui/ActionBar/ActionBar";
 import EMBreadCrumb from "@/components/ui/EMBreadCrumb/EMBreadCumb";
 import CopyLink from "@/components/ui/LinkCopy/LinkCopy";
+import { USER_ROLE } from "@/constants/role";
 import { apointmentdaysInWeeks } from "@/constants/selectConstantOptions";
 import { useAddBookingDataMutation } from "@/redux/api/bookingApi";
 import { useCategoryQuery } from "@/redux/api/categoryApi";
 import { useCustomersQuery } from "@/redux/api/customerApi";
 import { useDebounced } from "@/redux/hooks";
-import { getUserInfo } from "@/services/auth.service";
+import { getUserInfo, isLoggedIn } from "@/services/auth.service";
 import { ReloadOutlined } from "@ant-design/icons";
 
-import { Button, Card, Col, Input, Row, message } from "antd";
+import { Button, Card, Col, Input, Rate, Row, message } from "antd";
 import Meta from "antd/es/card/Meta";
 import Image from "next/image";
 import Link from "next/link";
-
+import { redirect } from "next/navigation";
+import stylecom from "../../../../../../../components/styles/singleproduct.module.css"
 import { useEffect, useState } from "react";
 
 const ServicePage = ({ params }: any) => {
-
+ useEffect(()=>{
+    const {role,userId}=getUserInfo() as any;
+    console.log(role)
+    if(!isLoggedIn || role !== USER_ROLE.CUSTOMER){
+         redirect('/login')
+    }
+  },[])
 
 const query: Record<string, any> = {};
   const { data, isLoading } = useCustomersQuery({ ...query });
@@ -58,8 +67,8 @@ console.log(custIdAsString)
       });
 
       if (!response.ok) {
-        
-        throw new Error("Booking is not created");
+        console.log("Booking is not created")
+        //throw new Error();
         
       }
 
@@ -68,8 +77,8 @@ console.log(custIdAsString)
       
       return responseData;
     } catch (error) {
-      window.location.reload();
-      console.error("Error fetching data:", error);
+   
+      
       throw error;
     }
   };
@@ -81,11 +90,11 @@ console.log(custIdAsString)
     try {
       console.log(object);
         await addBookingData(object);
-       //console.log("fetchdata(obj):",addBookingData(object))
+       console.log(addBookingData(object))
       message.success("Booking added successfully");
     } catch (err: any) {
-      console.error("Booking is not created successfully",err.message);
-      message.error("Booking is not created successfully",err.message);
+     
+      message.error("Booking is not created successfully");
     }
   };
 /////////////
@@ -130,30 +139,24 @@ categoryId:'',
   startTime:serviceData?.startTime,
   endTime: serviceData?.endTime,
   apointmentdaysInWeek:serviceData?.apointmentdaysInWeek,
+  profileImage:serviceData?.profileImage,
   isDeleted: false
   }],
   isConfirm: false
   };
- 
+ console.log(defaultValues)
   return (
     <div style={{margin:'10px'}}>
       <EMBreadCrumb
         items={[
           {
-            label: "admin",
-            link: "/admin",
+            label: "survice",
+            link: "/customer/category",
           },
         ]}
       />
-     <ActionBar title="Service List">
-        <Input
-          size="large"
-          placeholder="Search"
-          onChange={(e) => setSearchTerm(e.target.value)}
-          style={{
-            width: "20%",
-          }}
-        />
+     <ActionBar title="Category List">
+       
         <div>
           {/* <Link href="/admin/booking/create">
             <Button type="primary">Category</Button>
@@ -172,25 +175,34 @@ categoryId:'',
    
         </div>
       </ActionBar>
-      <div style={{display:"flex"}}>
+      <div className={stylecom.container}>
   
-<div style={{display:'flex',justifyContent:'space-between',marginBottom:'20px',}}>
+<div style={{width:"62vw"}} className={stylecom.container}>
   <Row gutter={6} style={{margin:0}} >
    
 {serviceData?.categoryIds?.map((data: any) => (
-  <Col span={16}  key={data?.id} style={{margin:0}}>
+  <Col  key={data?.id}>
   <Card
     title={''}
     hoverable
-     style={{ width: 450,justifyContent:'center',display:'flex'}}
-    cover={<Image alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" width={300} height={300}/>}
+    // style={{ width: 600,justifyContent:'center',display:'flex'}}
+    cover={<Image alt="example" src={data?.profileImage} width={300} height={300}/>}
   >
-    <Meta title="Europe Street beat" description="www.instagram.com" />
-    <p>{data?.name}</p>
-    <CopyLink  textToCopy={`${data?._id}`}/>
+    
+    <Meta title={data?.name} />
+    <h3>Select Category Id:</h3>
+    <CopyLink  textToCopy= {`${data?._id}`}/>
+   
+
+    <p>Details:{` `}{data?.details}</p>
+    <p>Create:{` `} {data?.createdAt}</p>
+     <Rate allowHalf defaultValue={4.5} />
+     <div>
     <Link key={''} href={`details/${data?._id}`}>
-    <Button>Service details</Button>
+
+    <Button type="primary">details</Button>
     </Link>
+    </div>
   </Card>
 </Col>
     
@@ -200,7 +212,7 @@ categoryId:'',
  </div>
 
  {/* </div><div style={{ boxShadow: '20px 20px 50px rgba(0, 0, 0, 0.2)',border:'radius',padding:'40px',margin:'10px' }} > */}
-<div>
+<div >
       <h1>Create Booking</h1>
       {loading && <p>Loading...</p>}
     {!loading && (
@@ -213,10 +225,10 @@ categoryId:'',
           <Col span={12} style={{ margin: "10px 0" }}>
             <FormInput name="customerID" label="customerID" />
           </Col>
-         
-       
+         {/* style={{display:"grid",gridTemplateColumns:"repeat(2,400px)"}} */}
+       <div >
            {defaultValues.serviceIDs.map((service, index) => (
-          <div key={index} style={{display:"grid",gridTemplateColumns:"repeat(2,400px)"}}>
+          <div key={index} >
             <Col span={12} style={{ margin: "10px 0" }}>
               <FormInput name={`serviceIDs[${index}].categoryId`} label="Category ID" />
             </Col>
@@ -225,6 +237,9 @@ categoryId:'',
             </Col>
             <Col span={12} style={{ margin: "10px 0" }}>
               <FormInput name={`serviceIDs[${index}].endTime`} label="End Time" />
+            </Col>
+            <Col span={12} style={{ margin: "10px 0" }}>
+              <FormInput name={`serviceIDs[${index}].profileImage`} label="profile Image" />
             </Col>
             <Col span={12} style={{ margin: "10px 0" }}>
               <FormSelectField
@@ -239,7 +254,7 @@ categoryId:'',
             
           </div>
         ))}
-        
+        </div>
         </Row>
         <Button type="primary" htmlType="submit">
           Booking

@@ -5,14 +5,17 @@ import Image from "next/image";
 import Form from "@/components/Forms/Form";
 //import FormInput from "@/components/Forms/FormInput";
 import { SubmitHandler } from "react-hook-form";
-import { useUserLoginMutation } from "@/redux/api/authApi";
+//import { useUserLoginMutation } from "@/redux/api/authApi";
 import { getUserInfo, storeUserInfo } from "@/services/auth.service";
 import { useRouter } from "next/navigation";
 //import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "@/schemas/login";
 import { yupResolver } from "@hookform/resolvers/yup";
 import FormInput from "@/components/Forms/FormInput";
-
+import { useUserLoginMutation } from "@/redux/api/authApi";
+import logi from '../../../../public/Security On-cuate.svg';
+import conte from '../../styles/singleproduct.module.css'
+import Link from "next/link";
 type FormValues = {
   id: string;
   password: string;
@@ -35,28 +38,34 @@ const LoginPage = () => {
         router.push(`${role}/my-profile`);
         message.success("User logged in successfully!");
       }
+      if (!res?.accessToken) {
+        message.error("User did not logged in!");
+      }
+     // message.error("User did not logged in!")
       // storeUserInfo({ accessToken: res?.accessToken });
       // console.log(res);
     } catch (err: any) {
       console.error(err.message);
+      
     }
   };
 
   return (
     <Row
-      justify="center"
+    className={conte.container}
+      justify="space-between"
       align="middle"
       style={{
-        minHeight: "100vh",
+        minHeight: "10vh",
       }}
     >
       <Col sm={12} md={16} lg={10}>
-        {/* <Image src={loginImage} width={500} alt="login image" /> */}
+         <Image src={logi} width={400} height={300} alt="login image" /> 
       </Col>
-      <Col sm={12} md={8} lg={8}>
+      <Col>
         <h1
           style={{
-            margin: "15px 0px",
+            margin: "0px 0px",
           }}
         >
           First login your account
@@ -84,6 +93,10 @@ const LoginPage = () => {
             </Button>
           </Form>
         </div>
+        <div style={{display:"flex",justifyContent:"flex-end"}}>
+           <Link href={"/"}> Please Register Here</Link>
+        </div>
+        
       </Col>
     </Row>
   );

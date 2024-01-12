@@ -5,16 +5,26 @@ import FormInput from "@/components/Forms/FormInput";
 import FormSelectField from "@/components/Forms/FormSelectField";
 import FormTextArea from "@/components/Forms/FormTextArea";
 import EMBreadCrumb from "@/components/ui/EMBreadCrumb/EMBreadCumb";
+import { USER_ROLE } from "@/constants/role";
 //import UploadImage from "@/components/ui/UploadImage.tsx/UploadImage";
 import { selectBloodGroupOptions, selectorGenderOptions } from "@/constants/selectConstantOptions";
 import { useAddCategoryMutation } from "@/redux/api/categoryApi";
 import { useAddServiceMutation } from "@/redux/api/serviceApi";
+import { getUserInfo, isLoggedIn } from "@/services/auth.service";
 import { Button, Col, Row, message } from "antd";
+import { redirect } from "next/navigation";
+import { useEffect } from "react";
 
 
 
 const CreateServicePage = () => {
-
+useEffect(()=>{
+      const {role,userId}=getUserInfo() as any;
+    console.log(role)
+    if(!isLoggedIn || role !== USER_ROLE.ADMIN){
+         redirect('/login')
+    }
+  },[])
   const [addService] = useAddServiceMutation();
 
   const onSubmit = async (values: any) => {
@@ -46,6 +56,10 @@ const CreateServicePage = () => {
 
  
 //   };
+const defaultValues = {
+ 
+      role:"category" || "",
+    }
   return (
     <div>
       <EMBreadCrumb
@@ -55,19 +69,16 @@ const CreateServicePage = () => {
             link: "/admin",
           },
           {
-            label: "service",
+            label: "category",
             link: "/admin/service",
           },
-           {
-            label: "category",
-            link: "/admin/category",
-          },
+          
         ]}
       />
-      <h1>Create Service</h1>
+      <h1>Create Category</h1>
 
       <div>
-        <Form submitHandler={onSubmit} >
+        <Form submitHandler={onSubmit} defaultValues={defaultValues}>
           <div
             style={{
               border: "1px solid #d9d9d9",
@@ -82,7 +93,7 @@ const CreateServicePage = () => {
                 marginBottom: "10px",
               }}
             >
-              Service Information
+               Information
             </p>
             <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
               <Col
@@ -112,6 +123,7 @@ const CreateServicePage = () => {
                   name="role"
                   size="large"
                   label="Role"
+                  
                 />
               </Col>
               {/* <Col

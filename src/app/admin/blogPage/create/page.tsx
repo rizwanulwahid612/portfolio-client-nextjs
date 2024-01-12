@@ -5,33 +5,48 @@ import FormInput from "@/components/Forms/FormInput";
 import FormSelectField from "@/components/Forms/FormSelectField";
 import FormTextArea from "@/components/Forms/FormTextArea";
 import EMBreadCrumb from "@/components/ui/EMBreadCrumb/EMBreadCumb";
+import { USER_ROLE } from "@/constants/role";
 //import UploadImage from "@/components/ui/UploadImage.tsx/UploadImage";
 import { selectBloodGroupOptions, selectorGenderOptions } from "@/constants/selectConstantOptions";
+import { useAdminsQuery } from "@/redux/api/adminApi";
 import { useAddBlogMutation } from "@/redux/api/blogApi";
 import { useAddCategoryMutation } from "@/redux/api/categoryApi";
 import { useAddServiceMutation } from "@/redux/api/serviceApi";
+import { getUserInfo, isLoggedIn } from "@/services/auth.service";
 import { Button, Col, Row, message } from "antd";
-
+import { useEffect } from "react";
+import { redirect } from "next/navigation";
 
 
 const CreateBlogPage = () => {
 
   const [addBlog] = useAddBlogMutation();
+useEffect(()=>{
+    const {role,userId}=getUserInfo() as any;
+    if(!isLoggedIn || role !== USER_ROLE.ADMIN){
+         redirect('/login')
+    }
+  },[])
+  
+  const query: Record<string, any> = {};
+  const { data, isLoading } = useAdminsQuery({ ...query });
+  
+  const admins:any = data?.admins.map(dam=>dam?.id);
+    console.log(admins)
+  const {role,userId}=getUserInfo() as any;
 
+const adminsd: any = data?.admins?.map(dam => {
+  if (dam?.id === userId) {
+    return dam;
+  }
+}).filter(Boolean);
+
+const adminID=adminsd?.map((adId:any)=>adId._id).join(' ');
   const onSubmit = async (values: any) => {
-    // console.log(values)
-    // const obj = { values };
-    //const file = obj["file"];
-    //delete obj["file"];
-   // const data = JSON.stringify(obj);
-    // const formData = new FormData();
-    // console.log(formData)
-    //formData.append("file", file as Blob);
-    // formData.append("data", data);
+    
      message.loading("Creating...");
     try {
-      // await addAdminData(formData);
-      // console.log(formData)
+      
       console.log(values)
         await addBlog(values);
       //console.log(addBlog(values))
@@ -44,7 +59,9 @@ const CreateBlogPage = () => {
 // //@ts-ignore
 //   const defaultValues = {   
 // role:"Service",
-
+const defaultValues = {
+    adminId:adminID
+    }
  
 //   };
   return (
@@ -53,7 +70,7 @@ const CreateBlogPage = () => {
         items={[
           {
             label: "admin",
-            link: "/admin",
+            link: "/admin/my-profile",
           },
           {
             label: "blog",
@@ -65,7 +82,7 @@ const CreateBlogPage = () => {
       <h1>Create Blog</h1>
 
       <div>
-        <Form submitHandler={onSubmit} >
+        <Form submitHandler={onSubmit} defaultValues={defaultValues}>
           <div
             style={{
               border: "1px solid #d9d9d9",
@@ -95,19 +112,10 @@ const CreateBlogPage = () => {
                   name="adminId"
                   size="large"
                   label="adminId"
+                  
                 />
               </Col>
               
-            
-              {/* <Col
-                className="gutter-row"
-                span={8}
-                style={{
-                  marginBottom: "10px",
-                }}
-              >
-                <UploadImage name="file" />
-              </Col> */}
             </Row>
           </div>
 
@@ -153,13 +161,7 @@ const CreateBlogPage = () => {
                   marginBottom: "10px",
                 }}
               >
-                {/* <FormSelectField
-                  size="large"
-                  name="admin.bloodGroup"
-                  options={selectBloodGroupOptions}
-                  label="Blood group"
-                  placeholder="Select"
-                /> */}
+               
               </Col>
            
              

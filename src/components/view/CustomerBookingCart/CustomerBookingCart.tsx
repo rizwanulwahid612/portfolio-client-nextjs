@@ -48,8 +48,8 @@ const CustomerBookingCart = () => {
   };
 
   const query: Record<string, any> = {};
-  const { data, isLoading } = useCustomersQuery({ ...query });
-  const {data:cartData,isLoading:loading}=useBookingsQuery({...query})
+  const { data, isLoading } = useCustomersQuery({ ...query },{refetchOnMountOrArgChange:true,pollingInterval:10000});
+  const {data:cartData,isLoading:loading}=useBookingsQuery({...query},{refetchOnMountOrArgChange:true,pollingInterval:10000})
   //console.log(cartData?.bookings?.map((fr:any)=>fr?.customerID?.id))
 
   //const customers: any = data?.customer?.map(dam => dam);
@@ -218,22 +218,22 @@ const isNotConfirmedBookingsCart = customerBookingInCard?.filter((cd: any) =>{
     <div>
       
       <p onClick={showDrawer}><CartBadges messageCount={bookingCount} /></p>
-      <Drawer title="Cart Items" placement="right" onClose={onClose} open={open}>
+      <Drawer title="Service History" placement="right" onClose={onClose} open={open}>
         
         {isNotConfirmedBookingsCart?.map((cartbok:any) =>(
           <Col span={8} key={cartbok?.id} style={{ margin: 0 }}>
             <Card
-              title={cartbok?.id}
               hoverable
               style={{ width: 320, justifyContent: 'center', display: 'flex' }}
             >
-              <Meta title="Europe Street beat" description="www.instagram.com" />
+              <Meta title=""/>
               <p>{cartbok?.isConfirm===true? "Booking Confirm: true" : "Booking Confirm: false" }</p>
-              <p>{cartbok?._id}</p>
+              <p>Booking Id: {cartbok?.id}</p>
+              <p>Booking Create:{cartbok?.createdAt}</p>
               {/* <Button onClick={()=>setDeleteBookingState(cartbok?._id)}>delete
               </Button> */}
-        <Button type="primary" onClick={showModal}>Delete</Button>
-        <Modal title="Remove Booking" open={isModalOpen} onOk={()=>deleteBookingHandler(cartbok?._id) } onCancel={handleCancel}>
+        <Button type="primary" onClick={showModal}>Cancel Booking</Button>
+        <Modal title="Remove Booking" open={isModalOpen} onOk={()=>deleteBookingHandler(cartbok?.id) } onCancel={handleCancel}>
         <p className="my-5">Do you want to remove this booking?</p>
       </Modal>
          

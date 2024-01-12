@@ -68,6 +68,7 @@ const router = useRouter();
   const { data, isLoading } = useBookingsQuery({ ...query });
 //@ts-ignore
   const bookings = data?.bookings;
+  console.log(bookings)
   //@ts-ignore
    const meta = data?.meta;
   //console.log("bookingisConfirm:",data?.bookings.map(book=>book.isConfirm))
@@ -99,24 +100,7 @@ const router = useRouter();
    //@ts-ignore
    const edTime=data?.bookings?.map((book:any)=>book?.serviceIDs?.map((fdr:any)=>fdr?.endTime))
    console.log("appweek:",edTime)
-   //const isdele=data?.bookings?.map(book=>book?.serviceIDs?.map((fdr:any)=>fdr))
-  // console.log("appweek:",isdele)
-  //@ts-ignore
-//   const defaultValues = {
-//   role:"booking",
-//   customerID:customerid,
-//   serviceIDs:[
-//    {
-//        categoryName: sername,
-//        categoryId: sernaId,
-//        startTime: stTime,
-//        endTime: edTime,
-//        apointmentdaysInWeek:appweek,
-//        isDeleted:false
-//   }
-//   ],
-//   isConfirm:true
-// }
+   
  const confirmBookingHandler = async (id: string) => {
     try {
       const res = await confirmBooking(id);
@@ -312,7 +296,7 @@ const router = useRouter();
         items={[
           {
             label: "admin",
-            link: "/admin",
+            link: "/admin/my-profile",
           },
         ]}
       />
@@ -326,9 +310,7 @@ const router = useRouter();
           }}
         />
         <div>
-          <Link href="/admin/booking/create">
-            <Button type="primary">Create Booking</Button>
-          </Link>
+          
           {(!!sortBy || !!sortOrder || !!searchTerm) && (
             <Button
               style={{ margin: "0px 5px" }}

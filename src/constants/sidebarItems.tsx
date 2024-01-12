@@ -13,6 +13,7 @@ import { getUserInfo } from "@/services/auth.service";
 import AdminNotification from "@/components/view/AdminNotification/AdminNotificaton";
  import CustomerNotification from "@/components/view/CustomerNotification/CustomerNotification";
 import CustomerBookingCart from "@/components/view/CustomerBookingCart/CustomerBookingCart";
+import SuperAdminNotification from "@/components/view/SuperAdminNotification/SuprtAdminNotification";
 
 
 
@@ -26,16 +27,16 @@ export const sidebarItems = (role: string) => {
       icon: <ProfileOutlined />,
     
     },
-     {
-      label: <Link href={'/category'}>Category</Link>,
-      key: "category",
-      icon: <ProfileOutlined />,
-    },
-     {
-      label: <Link href={'/services'}>Services</Link>,
-      key: "services",
-      icon: <ProfileOutlined />,
-    },
+    //  {
+    //   label: <Link href={'/category'}>Category</Link>,
+    //   key: "category",
+    //   icon: <ProfileOutlined />,
+    // },
+    //  {
+    //   label: <Link href={'/services'}>Services</Link>,
+    //   key: "services",
+    //   icon: <ProfileOutlined />,
+    // },
   
   ];
   const defaultSidebarItems: MenuProps["items"] = [
@@ -57,19 +58,23 @@ export const sidebarItems = (role: string) => {
   ];
 
   const commonAdminSidebarItems: MenuProps["items"] = [
-    
+    {
+      label: <Link href={`/${role}/allusers`}>Manage Users</Link>,
+      icon: <TableOutlined />,
+      key: `/${role}/manage-user`,
+    },
     {
       label: <Link href={`/${role}/booking`}>Manage Bookings</Link>,
       icon: <TableOutlined />,
       key: `/${role}/manage-customer`,
     },
     {
-      label: <Link href={`/${role}/category`}>Manage Categorys</Link>,
+      label: <Link href={`/${role}/category`}> Manage Services</Link>,
       icon: <TableOutlined />,
       key: `/${role}/manage-category`,
     },
      {
-      label: <Link href={`/${role}/service`}>Manage Services</Link>,
+      label: <Link href={`/${role}/service`}>Manage Categorys</Link>,
       icon: <TableOutlined />,
       key: `/${role}/manage-booking`,
     },
@@ -96,12 +101,17 @@ export const sidebarItems = (role: string) => {
 
   const superAdminSidebarItems: MenuProps["items"] = [
     ...defaultSidebarItems,
+      {
+      label:'',
+      icon: <SuperAdminNotification/>,
+      key: `drawer`,
+    },
    // ...commonAdminSidebarItems,
-    {
-      label: <Link href={`/${role}/something`}>Manage Something</Link>,
-      icon: <TableOutlined />,
-      key: `/${role}/manage-something`,
-    }
+    // {
+    //   label: <Link href={`/${role}/manageadmin`}>Manage Admin</Link>,
+    //   icon: <TableOutlined />,
+    //   key: `/${role}/manage-something`,
+    // }
     
    
   ];
@@ -115,7 +125,7 @@ export const sidebarItems = (role: string) => {
       key: `/${role}/my-profile`,
     },
      {
-      label: <Link href={`/${role}/category`}>Category Page</Link>,
+      label: <Link href={`/${role}/category`}>Service Page</Link>,
       icon: <TableOutlined />,
       key: `/${role}/my-category`,
     },
@@ -125,12 +135,17 @@ export const sidebarItems = (role: string) => {
       icon: <ScheduleOutlined />,
       key: `/${role}/booking`,
     },
- 
-    {
-      label: <Link href={`/${role}/payment`}>Payment</Link>,
-      icon: <CreditCardOutlined />,
-      key: `/${role}/payment`,
+     {
+      label: <Link href={`/${role}/feedback`}>Feedback Form</Link>,
+      icon: <ScheduleOutlined />,
+      key: `/${role}/feedback`,
     },
+ 
+    // {
+    //   label: <Link href={`/${role}/payment`}>Payment</Link>,
+    //   icon: <CreditCardOutlined />,
+    //   key: `/${role}/payment`,
+    // },
     {
       label:"",
       icon: <CustomerNotification/>,

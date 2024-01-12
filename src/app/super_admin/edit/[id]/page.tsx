@@ -6,14 +6,25 @@ import FormInput from "@/components/Forms/FormInput";
 import FormSelectField from "@/components/Forms/FormSelectField";
 import FormTextArea from "@/components/Forms/FormTextArea";
 import EMBreadCrumb from "@/components/ui/EMBreadCrumb/EMBreadCumb";
+import { USER_ROLE } from "@/constants/role";
 import { selectBloodGroupOptions, selectorGenderOptions } from "@/constants/selectConstantOptions";
 import { useAdminQuery, useUpdateAdminMutation } from "@/redux/api/adminApi";
 import { useDepartmentsQuery } from "@/redux/api/departmentApi";
+import { getUserInfo, isLoggedIn } from "@/services/auth.service";
 import { IDepartment } from "@/types";
 
 import { Button, Col, Row, message } from "antd";
+import { redirect } from "next/navigation";
+import { useEffect } from "react";
 
 const EditAdminPage = ({ params }: any) => {
+   useEffect(()=>{
+    const {role,userId}=getUserInfo() as any;
+    console.log(role)
+    if(!isLoggedIn || role !== USER_ROLE.SUPER_ADMIN){
+         redirect('/login')
+    }
+  },[])
   const { data: adminData, isLoading: loading } = useAdminQuery(params?.id);
   //   console.log(adminData);
   const [updateAdmin] = useUpdateAdminMutation();
@@ -67,8 +78,8 @@ const EditAdminPage = ({ params }: any) => {
       <EMBreadCrumb
         items={[
           {
-            label: "admin",
-            link: "/admin",
+            label: "All admin",
+            link: "/super_admin",
           },
           // {
           //   label: "admin",

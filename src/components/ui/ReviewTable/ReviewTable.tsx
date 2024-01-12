@@ -25,6 +25,8 @@ const customersd: any = data?.customer?.map((dam:any) => {
 }).filter(Boolean);
 console.log(customersd)
 const cusId= customersd?.map((cust:any)=>cust?._id)
+const email= customersd?.map((cust:any)=>cust?.email)
+
 const cusIdString = cusId?.join(',');
 console.log(cusIdString)
 // const cuidString= cusId[0]
@@ -80,8 +82,10 @@ const [addReview]=useAddReviewMutation()
     title={''}
     hoverable
   >
-    <Meta title="Europe Street beat" description="www.instagram.com" />
-    <p>{data?.comment}</p>
+    <Meta title={ <p>User Id: {` `}{data?.customerId}</p>}
+ />
+    <p>Comments: {` `}{data?.comment}</p>
+    <Rate allowHalf defaultValue={data?.rating} />
     <p>Rating:{data?.rating}</p>
   </Card>
 </Col>

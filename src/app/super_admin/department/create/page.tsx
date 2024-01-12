@@ -3,11 +3,22 @@
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
 import EMBreadCrumb from "@/components/ui/EMBreadCrumb/EMBreadCumb";
+import { USER_ROLE } from "@/constants/role";
 //import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
 import { useAddDepartmentMutation } from "@/redux/api/departmentApi";
+import { getUserInfo, isLoggedIn } from "@/services/auth.service";
 import { Button, Col, Row, message } from "antd";
+import { redirect } from "next/navigation";
+import { useEffect } from "react";
 
 const CreateDepartmentPage = () => {
+  useEffect(()=>{
+    const {role,userId}=getUserInfo() as any;
+    console.log(role)
+    if(!isLoggedIn || role !== USER_ROLE.SUPER_ADMIN){
+         redirect('/login')
+    }
+  },[])
   const [addDepartment] = useAddDepartmentMutation();
 
   const onSubmit = async (data: any) => {
@@ -26,8 +37,8 @@ const CreateDepartmentPage = () => {
     <div>
       <EMBreadCrumb
         items={[
-          { label: `${base}`, link: `/${base}` },
-          { label: "department", link: `/${base}/department` },
+         
+          { label: "department", link: `/super_admin/department` },
         ]}
       />
       <h1>Create Department</h1>

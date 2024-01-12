@@ -67,10 +67,10 @@ const Navbar = ({
           <Link href="/">
             <Title
               className={`m-0 text-white ${
-                hasSider && "text-center lg:text-left"
+                hasSider && "text-center sm:text-left"
               }`}
             >
-              Event Manage
+              Events
             
             </Title>
           </Link>

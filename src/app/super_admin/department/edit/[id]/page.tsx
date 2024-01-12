@@ -4,19 +4,30 @@ import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
 import ActionBar from "@/components/ui/ActionBar/ActionBar";
 import EMBreadCrumb from "@/components/ui/EMBreadCrumb/EMBreadCumb";
+import { USER_ROLE } from "@/constants/role";
 // import ActionBar from "@/components/ui/ActionBar";
 // import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
 import {
   useDepartmentQuery,
   useUpdateDepartmentMutation,
 } from "@/redux/api/departmentApi";
+import { getUserInfo, isLoggedIn } from "@/services/auth.service";
 import { Button, Col, Row, message } from "antd";
+import { redirect } from "next/navigation";
+import { useEffect } from "react";
 
 type IDProps = {
   params: any;
 };
 
 const EditDepartmentPage = ({ params }: IDProps) => {
+   useEffect(()=>{
+    const {role,userId}=getUserInfo() as any;
+    console.log(role)
+    if(!isLoggedIn || role !== USER_ROLE.SUPER_ADMIN){
+         redirect('/login')
+    }
+  },[])
   const { id } = params;
 
   const { data, isLoading } = useDepartmentQuery(id);
@@ -43,13 +54,10 @@ const EditDepartmentPage = ({ params }: IDProps) => {
     <div>
       <EMBreadCrumb
         items={[
-          {
-            label: "admin",
-            link: "/admin",
-          },
+          
           {
             label: "department",
-            link: "/admin/department",
+            link: "/super_admin/department",
           },
         ]}
       />

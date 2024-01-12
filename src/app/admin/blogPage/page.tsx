@@ -67,32 +67,32 @@ const BlogPage = () => {
 //  const session:any=getSession()
 //  console.log(session?.accessToken)
   const blogs:IPost[] | undefined = data?.blogs;
-  const blog=blogs?.map((blog:any)=>blog)
-  console.log(blog)
-  const meta = data?.meta;
+  const blogIdss= blogs?.map((v:any)=>v?._id) 
 
+const meta = data?.meta;
+console.log(blogIdss)
   const columns = [
     {
       title: "Blog Id",
       dataIndex: "_id",
       sorter: true,
     },
-    {
-      title: "Admin Id",
-      dataIndex: "adminId",
+    // {
+    //   title: "Admin Id",
+    //   dataIndex: "adminId",
      
-    },
+    // },
     {
       title: "Post Blog",
       dataIndex: "comment",
     },
-    {
-      title: "Image",
-      dataIndex: "imagepost",
-      render: function (data: IDepartment) {
-        return <>{data?.title}</>;
-      },
-    },
+    // {
+    //   title: "Image",
+    //   dataIndex: "imagepost",
+    //   render: function (data: IDepartment) {
+    //     return <>{data?.title}</>;
+    //   },
+    // },
    
     {
       title: "Created at",
@@ -104,17 +104,17 @@ const BlogPage = () => {
     },
     {
       title: "Action",
-      dataIndex: "id",
+      dataIndex: "_id",
       render: function (data: any) {
         // console.log(data);
         return (
           <>
-            <Link href={`/admin/details/${data}`}>
+            <Link href={`/admin/blogPage/details/${data}`}>
               <Button onClick={() => console.log(data)} type="primary">
                 <EyeOutlined />
               </Button>
             </Link>
-            <Link href={`/admin/edit/${data}`}>
+            <Link href={`/admin/blogPage/edit/${data}`}>
               <Button
                 style={{
                   margin: "0px 5px",
@@ -160,7 +160,7 @@ const BlogPage = () => {
   };
 
   const deleteBlogHandler = async (id: string) => {
-    // console.log(id);
+     console.log(id);
     try {
       const res = await deleteBlog(id);
       if (res) {
@@ -179,7 +179,7 @@ const BlogPage = () => {
         items={[
           {
             label: "admin",
-            link: "/admin",
+            link: "/admin/my-profile",
           },
         ]}
       />

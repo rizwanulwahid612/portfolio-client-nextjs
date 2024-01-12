@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client"
 import { useAdminsQuery } from '@/redux/api/adminApi';
 import { getUserInfo, isLoggedIn } from '@/services/auth.service';
@@ -15,6 +16,7 @@ import Image from 'next/image';
 import styleCom from './booking.module.css'
 
 const CustomerBooking = () => {
+  
   useEffect(()=>{
     const {role,userId}=getUserInfo() as any;
     console.log(role)
@@ -56,26 +58,46 @@ const customerBookingreq: any = cartData?.bookings?.map((fr:any)=> {
   const customersBooking: any = customersd?.map((bok:any)=>bok?.booking.map((fggw:any)=>fggw?.isConfirm))
   console.log("customersBookings:",customersBooking)
 
+ const bookingStartTime: any = customersd?.map((bok:any)=>bok?.booking?.map((fggw:any)=>fggw.serviceIDs.map((s:any)=>s?.startTime)))
+  console.log("customersBookings:",bookingStartTime)
+ const bookingendTime: any = customersd?.map((bok:any)=>bok?.booking?.map((fggw:any)=>fggw.serviceIDs.map((s:any)=>s?.endTime)))
+  console.log("customersBookings:",bookingendTime)
+  const bookingengApointment: any = customersd?.map((bok:any)=>bok?.booking?.map((fggw:any)=>fggw.serviceIDs.map((s:any)=>s?.apointmentdaysInWeek)))
+  console.log("customersBookings:",bookingengApointment)
+// const bookingImage: any =cartData?.bookings?.map((s:any)=>s?.serviceIDs.map((p:any)=>p?.categoryId?.profileImage))
+//   console.log("customersBookings:",bookingImage)
+
+const bookingImage: any = cartData?.bookings
+  ?.flatMap((s: any) =>
+    s?.serviceIDs?.map((p: any) => p?.categoryId?.profileImage)
+  )
+  .filter((image: any) => image !== undefined);
+
+console.log(bookingImage)
+
   let customerNotifications = customersd?.map((notif: { notification: any[]; }) => notif?.notification?.map(u=>u));
   console.log("notifiObjects",customerNotifications)
 
 return(
   <div>
-       <div className={styleCom.main} style={{ marginBottom: '20px' }}>
+       {/* <div className={styleCom.main} style={{ marginBottom: '20px' }}> */}
+       <div  style={{ marginBottom: '20px' }}>
         <Row gutter={6} style={{ margin: 0 }}>
           {customersd?.map((bok:any)=>bok?.booking.map((fggw:any)=> (
-            <Col span={8} key={fggw?.id} style={{ marginBottom: "20px" }}>
+            <Col  xs={24} sm={24} md={12} lg={8} span={8} key={fggw?.id} style={{ marginBottom: "20px" }}>
               <Card
                 title={''}
                 hoverable
-                 style={{ width: 450, justifyContent: 'center', display: 'flex' }}
-                cover={<Image alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" width={300} height={300} />}
+                //  style={{ width: 450, justifyContent: 'center', }}
+                cover={<Image alt="example" src={bookingImage} width={300} height={300} />}
               >
-                <Meta title="Europe Street beat" description="www.instagram.com" />
-                <p>{fggw?._id}</p>
-                {/* <Link key={''} href={`category/service/services/${categorydata?.id}`}>
-                  <Button>Go to Service</Button>
-                </Link> */}
+                
+                <p>Booking Id: {` `}{fggw?._id}</p>
+                <p>Confirm: {` `}{customersBooking === false ? "false" : "true"}</p>
+                <p>Booking Start:{` `}{bookingStartTime}</p>
+                <p>Booking End:{` `}{bookingendTime}</p>
+                <p>Booking Apointment Day:{` `}{bookingengApointment}</p>
+                
               </Card>
             </Col>
           )))}

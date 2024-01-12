@@ -54,9 +54,15 @@ export type IReview = {
   rating: string;
   comment: string;
 };
+export type IFeedback = {
+  customerName: string;
+  customerImage: string;
+  comment: string;
+  rating: string;
+};
 export type IPost = {
   adminId: string;
-  imagepost: string;
+  imagepost?: string;
   comment: string;
 };
 export type IService = {
@@ -88,6 +94,7 @@ export interface ICategory {
 }
 export interface IBookingRequest {
   categoryId: string;
+  bookimage?: string;
   startTime: string;
   endTime: string;
   apointmentdaysInWeek?: string;

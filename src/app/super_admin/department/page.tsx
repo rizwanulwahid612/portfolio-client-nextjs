@@ -12,16 +12,26 @@ import {
 } from "@/redux/api/departmentApi";
 import { Button, Input, message } from "antd";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 // import ActionBar from "@/components/ui/ActionBar";
 import { useDebounced } from "@/redux/hooks";
 import dayjs from "dayjs";
 import EMBreadCrumb from "@/components/ui/EMBreadCrumb/EMBreadCumb";
 import ActionBar from "@/components/ui/ActionBar/ActionBar";
 import EMTable from "@/components/ui/EMTable/EMTable";
+import { getUserInfo, isLoggedIn } from "@/services/auth.service";
+import { USER_ROLE } from "@/constants/role";
+import { redirect } from "next/navigation";
 //import { useDepartmentsQuery } from "@/redux/api/departmentApi";
 
 const ManageDepartmentPage = () => {
+   useEffect(()=>{
+    const {role,userId}=getUserInfo() as any;
+    console.log(role)
+    if(!isLoggedIn || role !== USER_ROLE.SUPER_ADMIN){
+         redirect('/login')
+    }
+  },[])
   const query: Record<string, any> = {};
 
   const [page, setPage] = useState<number>(1);
@@ -81,7 +91,7 @@ const ManageDepartmentPage = () => {
       render: function (data: any) {
         return (
           <>
-            <Link href={`/admin/department/edit/${data?.id}`}>
+            <Link href={`/super_admin/department/edit/${data?.id}`}>
               <Button
                 style={{
                   margin: "0px 5px",
@@ -129,7 +139,7 @@ const ManageDepartmentPage = () => {
         items={[
           {
             label: "admin",
-            link: "/admin",
+            link: "/super_admin",
           },
         ]}
       />
@@ -147,7 +157,7 @@ const ManageDepartmentPage = () => {
           }}
         />
         <div>
-          <Link href="/admin/department/create">
+          <Link href="/super_admin/department/create">
             <Button type="primary">Create</Button>
           </Link>
           {(!!sortBy || !!sortOrder || !!searchTerm) && (
