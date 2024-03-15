@@ -9,7 +9,7 @@ import { Button, Drawer, Layout, Menu, Typography } from "antd";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-
+import styletext from "../../styles/textcolor.module.css"
 const { Header, Content } = Layout;
 const { Title } = Typography;
 
@@ -65,15 +65,22 @@ const Navbar = ({
         )}
         <Content>
           <Link href="/">
-            <Title
-              className={`m-0 text-white ${
+          <h2 className="text-4xl">
+             <h2 className={styletext.gradienttext}>
+               Portfolio
+              </h2>
+              </h2>
+          </Link>
+            {/* <Title
+              className={`m-0 text-6xl ${
                 hasSider && "text-center sm:text-left"
               }`}
             >
-              Events
             
-            </Title>
-          </Link>
+              
+            
+            </Title> */}
+          
          
         </Content>
         
@@ -86,8 +93,8 @@ const Navbar = ({
           items={sidebarItems(role)}
         />
       
-     <>
- {role ? (
+     <div className="lg:block hidden">
+  {role ? (
             <Button
               type="primary"
               onClick={logOut}
@@ -103,8 +110,8 @@ const Navbar = ({
             >
               Sign In
             </Button>
-          )}
-        </>
+          )} 
+        </div>
         <>
         <Button type="primary" className="lg:hidden" onClick={showDrawer}>
           <MenuOutlined />
@@ -116,9 +123,28 @@ const Navbar = ({
             selectedKeys={[pathname]}
             style={{ borderRight: 0 }}
             disabledOverflow
-             items={sidebarItems(role)}
-          >   
+             items={sidebarItems(role)} 
+            
+          >
+              
           </Menu>
+            {role ? (
+            <Button
+              type="primary"
+              onClick={logOut}
+            >
+              Sign Out
+            </Button>
+          ) : (
+            <Button
+              type="primary"
+              onClick={() => {
+               router.push("/login");
+              }}
+            >
+              Sign In
+            </Button>
+          )} 
         </Drawer>
         </>
       </Header>

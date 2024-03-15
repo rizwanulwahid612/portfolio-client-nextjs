@@ -1,13 +1,28 @@
+export const selectorFrameworkOptions= [
+        { value: 'React-Js', label: 'React Js' },
+        { value: 'React-Vite', label: 'React Vite' },
+        { value: 'Next-Js', label: 'Next Js' },
+        { value: 'JavaScript', label: 'JavaScript' },
+        { value: 'Html', label: 'HTML' },
+        { value: 'Java', label: 'Java' },
+        { value: 'Python', label: 'Python'},
+        { value: 'C++', label: 'C++' },
+        { value: 'C', label: 'C' },
+        { value: 'Angular', label: 'Angular Js' },
+        { value: 'Vue', label: 'Vue' },
+         { value: 'Laravel', label: 'Laravel' },
+         { value: 'Ruby', label: 'Ruby' },
+         { value: 'Flask', label: 'Flask' },
+         { value: 'Django', label: 'Django' },
+         { value: 'Jquery', label: 'jQuery' },
+         { value: 'Express', label: 'Express' },
+]
 export const selectorGenderOptions= [
         { value: 'Male', label: 'Male' },
         { value: 'Femail', label: 'Femail' },
         { value: 'Others', label: 'Others' }
 ]
-export const selectorDepartmentOptions= [
-        { value: 'Hr', label: 'hr' },
-        { value: 'Finance', label: 'finance' },
-        { value: 'Management Department', label: 'management department' }
-]
+
 export const selectBloodGroupOptions=[
         { value: 'A+', label: 'a+' },
         { value: 'A-', label: 'a-' },
@@ -19,51 +34,51 @@ export const selectBloodGroupOptions=[
         { value: 'O-', label: 'o-' },     
 ]
 
-export const apointmentdaysInWeeks=[
+// export const apointmentdaysInWeeks=[
         
-    {value:'SATURDAY TO THURSDAY',label:'SATURDAY TO THURSDAY'},
-     {value:'SUNDAY TO WEDNESDAY',label:'SUNDAY TO WEDNESDAY'},
-     {value:'MONDAY TO THURSDAY',label:'MONDAY TO THURSDAY'},
-     {value:'TUESDAY TO FRIDAY',label:'TUESDAY TO FRIDAY'},
-     {value:'WEDNESDAY TO SATURDAY',label:'WEDNESDAY TO SATURDAY'},
-     {value:'THURSDAY TO SUNDAY',label:'THURSDAY TO SUNDAY'},
-     {value:'FRIDAY TO MONDAY',label:'FRIDAY TO MONDAY'},
-     {value:'7 DAYS',label:'7 DAYS'},
-]
-export const facultyOptions = [
-	{
-		label: 'Engineering',
-		value: 'engineering',
-	},
-	{
-		label: 'Faculty of science and engineering',
-		value: 'Faculty of science and engineering',
-	},
-]
-export const acDepartmentOptions = [
-	{
-		label: 'CSE',
-		value: 'cse',
-	},
-	{
-		label: 'Software Engineering',
-		value: 'software engineering',
-	},
-]
-export const acSemesterOptions = [
-	{
-		label: 'Fall 2023',
-		value: 'fall23',
-	},
-	{
-		label: 'Autumn 2023',
-		value: 'autumn2023',
-	},
-	{
-		label: 'Summer 2023',
-		value: 'summer23',
-	},
-]
+//     {value:'SATURDAY TO THURSDAY',label:'SATURDAY TO THURSDAY'},
+//      {value:'SUNDAY TO WEDNESDAY',label:'SUNDAY TO WEDNESDAY'},
+//      {value:'MONDAY TO THURSDAY',label:'MONDAY TO THURSDAY'},
+//      {value:'TUESDAY TO FRIDAY',label:'TUESDAY TO FRIDAY'},
+//      {value:'WEDNESDAY TO SATURDAY',label:'WEDNESDAY TO SATURDAY'},
+//      {value:'THURSDAY TO SUNDAY',label:'THURSDAY TO SUNDAY'},
+//      {value:'FRIDAY TO MONDAY',label:'FRIDAY TO MONDAY'},
+//      {value:'7 DAYS',label:'7 DAYS'},
+// ]
+// export const facultyOptions = [
+// 	{
+// 		label: 'Engineering',
+// 		value: 'engineering',
+// 	},
+// 	{
+// 		label: 'Faculty of science and engineering',
+// 		value: 'Faculty of science and engineering',
+// 	},
+// ]
+// export const acDepartmentOptions = [
+// 	{
+// 		label: 'CSE',
+// 		value: 'cse',
+// 	},
+// 	{
+// 		label: 'Software Engineering',
+// 		value: 'software engineering',
+// 	},
+// ]
+// export const acSemesterOptions = [
+// 	{
+// 		label: 'Fall 2023',
+// 		value: 'fall23',
+// 	},
+// 	{
+// 		label: 'Autumn 2023',
+// 		value: 'autumn2023',
+// 	},
+// 	{
+// 		label: 'Summer 2023',
+// 		value: 'summer23',
+// 	},
+// ]
 
 export const months = [
   "January",

@@ -40,12 +40,5 @@ export const axiosBaseQuery =
           data: err.response?.data || err.message,
         },
       };
-      // let err = axiosError as AxiosError;
-      // return {
-      //   error: {
-      //     status: err.response?.status,
-      //     data: err.response?.data || err.message,
-      //   },
-      // };
     }
   };

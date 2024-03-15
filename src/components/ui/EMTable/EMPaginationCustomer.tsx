@@ -18,7 +18,7 @@ const EMPaginationCustomer: FC<EMPaginationProps> = ({ hasNextPage, hasPrevPage,
 
   const handlePageChange = (newPage: number, pageSize?: number) => {
     router.push(
-      `http://localhost:3000/customer/category/?page=${newPage}&per_page=${pageSize || per_page}`
+      `${process.env.NEXT_PUBLIC_API}/customer/category/?page=${newPage}&per_page=${pageSize || per_page}`
     );
   };
 

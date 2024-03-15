@@ -18,7 +18,7 @@ const EMPaginationAdmin: FC<EMPaginationProps> = ({ hasNextPage, hasPrevPage,tot
 
   const handlePageChange = (newPage: number, pageSize?: number) => {
     router.push(
-      `http://localhost:3000/admin/category/?page=${newPage}&per_page=${pageSize || per_page}`
+      `${process.env.NEXT_PUBLIC_API}/admin/category/?page=${newPage}&per_page=${pageSize || per_page}`
     );
   };
 

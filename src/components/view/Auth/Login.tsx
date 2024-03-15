@@ -17,7 +17,7 @@ import logi from '../../../../public/Security On-cuate.svg';
 import conte from '../../styles/singleproduct.module.css'
 import Link from "next/link";
 type FormValues = {
-  id: string;
+  email: string;
   password: string;
 };
 
@@ -73,7 +73,7 @@ const LoginPage = () => {
         <div>
           <Form submitHandler={onSubmit} resolver={yupResolver(loginSchema)}>
             <div>
-              <FormInput name="id" type="text" size="large" label="User Id" required />
+              <FormInput name="email" type="email" size="large" label="User Email" required />
             </div>
             <div
               style={{
@@ -94,7 +94,7 @@ const LoginPage = () => {
           </Form>
         </div>
         <div style={{display:"flex",justifyContent:"flex-end"}}>
-           <Link href={"/"}> Please Register Here</Link>
+           <Link href={"/forgot-password"}> Forgot Password!</Link>
         </div>
         
       </Col>

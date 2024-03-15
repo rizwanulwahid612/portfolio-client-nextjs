@@ -22,125 +22,113 @@ export type IGenericErrorMessage = {
   path: string | number;
   message: string;
 };
-
-export interface IDepartment {
-  id: string;
+export type IFramework = {
+  image: string;
+  category: string;
+  description: string;
+  rating: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+};
+export type IProject = {
+  image: string;
+  name: string;
   title: string;
+  category: string;
+  frontend: string;
+  backend: string;
+  description: string;
+  techonology: string;
+  ownername: string;
+  gitClient: string;
+  gitServer: string;
+  liveproject: string;
+  liveServer: string;
+  videoLink: string;
   createdAt: string;
   updatedAt: string;
   __v: number;
-}
-export interface ICustomer {
+};
+export type IUser = {
+  _id: any;
   id: string;
-  name: Name;
-  profileImage: string;
-  dateOfBirth?: string;
+  role: string;
+  name: string;
   email: string;
-  contactNo: string;
-  emergencyContactNo: string;
+  facebook?: string;
+  youtube?: string;
+  instagram?: string;
+  tools?: string;
+  discord?: string;
+  language?: string;
+  twitter?: String;
   gender?: string;
-  permanentAddress?: string;
-  presentAddress?: string;
-  bloodGroup?: string;
-  notification: { message: string }[];
-  booking: string[];
+  contact?: string;
+  image: string;
+  title: string;
+  skills?: string;
+  aboutme?: string;
+  fathersname?: string;
+  mothersname?: string;
+  marriedstatus?: string;
+  nid?: string;
+  birth?: string;
+  blood?: string;
+  height?: string;
+  weight?: string;
+  ssc?: string;
+  hsc?: string;
+  institute: string;
+  degree: string;
+  passingyear?: string;
+  masters?: string;
+  phd?: string;
+  presentaddress?: string;
+  parmanentaddress?: string;
+  frontend?: string;
+  backend?: string;
+  linkedin?: string;
+  whatsapp?: string;
+  github?: string;
+  website?: string;
+  experience1?: string;
+  experience2?: string;
+  experience3?: string;
+  experience4?: string;
+  experience5?: string;
+  experience6?: string;
+  experience7?: string;
+  experience8?: string;
+  experience9?: string;
+  experience10?: string;
+  extracurriculam?: string;
+  achivement?: string;
   createdAt: string;
   updatedAt: string;
   __v: number;
-}
+};
 export type IReview = {
   customerId: string;
   categoryId: string;
   rating: string;
   comment: string;
 };
-export type IFeedback = {
-  customerName: string;
-  customerImage: string;
-  comment: string;
-  rating: string;
-};
-export type IPost = {
-  adminId: string;
-  imagepost?: string;
-  comment: string;
-};
-export type IService = {
-  x: 1;
-  //[x: string]: Key | null | undefined;
-  id: string;
-  role: string;
+export type ISkill = {
   name: string;
-  price: string;
-  details: string;
-  location: string;
-  profileImage: string;
-  startTime?: string;
-  endTime?: string;
-  apointmentdaysInWeek?: string;
-  categoryIds: string[];
 };
-export interface ICategory {
-  id: string;
-  role: string;
-  serviceID: string;
-  name: string;
-  profileImage: string;
-  details: string;
-  reviewIds: string[];
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
-}
-export interface IBookingRequest {
-  categoryId: string;
-  bookimage?: string;
-  startTime: string;
-  endTime: string;
-  apointmentdaysInWeek?: string;
-  isDeleted?: boolean;
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
-}
-export interface IBooking {
-  id: string;
-  role: string;
-  customerID: string;
-  serviceIDs: IBookingRequest[];
-  isConfirm: boolean;
-  adminID: string;
-  notification: { message: string }[];
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
-}
-export interface Name {
-  firstName: string;
-  lastName: string;
-  middleName: string;
-}
-
-export interface IAdmin {
-  _id: any;
-  id: string;
-  name: Name;
-  profileImage?: string;
-  gender: string;
-  managementDepartment: string;
-  email: string;
-  contactNo: string;
-  emergencyContactNo: string;
-  dateOfBirth: string;
-  bloodGroup: string;
-  designation: string;
-  presentAddress: string;
-  permanentAddress: string;
-  notification?: {
-    message: string;
-    booking: IBooking[];
-  }[];
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
-}
+export type IAchivement = {
+  date?: string;
+  category?: string;
+  certificate?: string;
+  description?: string;
+  get?: string;
+};
+export type IExperiance = {
+  title?: string;
+  description?: string;
+  startdate?: string;
+  enddate?: string;
+  present?: string;
+  company?: string;
+};

@@ -12,7 +12,9 @@ export default function Publiclayout({
       
       <body>
         <PublicHeader/>
+        <div style={{margin:"20px"}} className="min-h-[calc(100vh-64px)]">
          {children}
+         </div>
       </body>
       </html>
        

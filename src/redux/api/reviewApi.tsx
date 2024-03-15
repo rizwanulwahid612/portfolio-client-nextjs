@@ -1,5 +1,5 @@
 import { tagTypes } from "@/redux/tag-types";
-import { IDepartment, IMeta, IReview } from "@/types";
+import { IMeta, IReview } from "@/types";
 import { baseApi } from "./baseApi";
 
 const REVIEW_URL = "/reviews";
