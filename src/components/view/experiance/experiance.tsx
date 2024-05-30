@@ -28,9 +28,11 @@ const ExperiancePage = () => {
       transition={{ duration: 1 }}
     >
       {/* CONTAINER */}
-      <div className="h-full overflow-scroll lg:flex" ref={containerRef}>
+      <div  className="h-full overflow-scroll lg:flex" ref={containerRef}>
         {/* TEXT CONTAINER */}
-        <div className=" flex flex-col   lg:w-2/3 lg:pr-0 xl:w-1/2">
+        
+         <div className=" flex flex-col gap-24 md:gap-32 lg:gap-48 xl:gap-64 lg:w-2/3 lg:pr-0 xl:w-1/2">
+        {/* <div className=" flex flex-col md:w-full  lg:w-2/3 lg:pr-0 xl:w-1/2"> */}
      
         
           {/* EXPERIENCE CONTAINER */}
@@ -59,30 +61,30 @@ const ExperiancePage = () => {
               {exp?.experiance?.map((exper:any)=>{
                 return(
                   <>
-                  <div className="flex justify-between h-48">
+                  <div  className="flex justify-between h-50">
                 {/* LEFT */}
-                <div className="w-1/3 ">
+                <div  className="w-1/3 ">
                   {/* JOB TITLE */}
                   <div className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">
                     {exper?.title}
                   </div>
                   {/* JOB DESC */}
-                  <div className="p-3 text-sm italic">
+                  <div className="p-4 text-lg italic">
                    {exper?.description}.{" "}
                   </div>
                  
                   {/* JOB DATE */}
-                  <div className="p-3 text-red-400 text-sm font-semibold">
+                  <div className="p-3 text-red-400 text-md font-semibold">
                     {exper?.startdate} - {exper?.enddate}
                   </div>
                   
                   {/* JOB COMPANY */}
-                  <div className="p-1 rounded bg-white text-sm font-semibold w-fit">
+                  <div style={{marginBottom:"25px"}} className="p-1 rounded bg-white text-sm font-semibold w-fit">
                     {exper?.company}
                   </div>
                 </div>
                 {/* CENTER */}
-                <div className="w-1/6 flex justify-center">
+                <div className="w-1/3 flex justify-center">
                   {/* LINE */}
                   <div className="w-1 h-full bg-gray-600 rounded relative">
                     {/* LINE CIRCLE */}

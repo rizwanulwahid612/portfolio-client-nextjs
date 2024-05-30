@@ -1,0 +1,55 @@
+.carouselContainer {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.imageContainer {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.image {
+    min-width: 100%;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.image.inactive {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.image.active {
+    opacity: 1;
+}
+
+.arrowButton {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #000;
+    cursor: pointer;
+    z-index: 1;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.arrowButton:hover {
+    color: #888;
+}
+
+.arrowButton:nth-child(1) {
+    left: 10px;
+}
+
+.arrowButton:nth-child(3) {
+    right: 10px;
+}

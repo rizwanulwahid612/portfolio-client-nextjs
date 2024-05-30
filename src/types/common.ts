@@ -50,12 +50,27 @@ export type IProject = {
   updatedAt: string;
   __v: number;
 };
+export type Iimgs = {
+  imgs?: string;
+  public_id?: string;
+  secure_url?: string;
+};
 export type IUser = {
   _id: any;
   id: string;
   role: string;
   name: string;
   email: string;
+  imagess?: Iimgs[];
+  back: string;
+  cv: string;
+  features: string;
+  framework: string;
+  front: string;
+  resume: string;
+  technologyFor: string;
+  tool: string;
+  trainningcenter: string;
   facebook?: string;
   youtube?: string;
   instagram?: string;
@@ -65,7 +80,6 @@ export type IUser = {
   twitter?: String;
   gender?: string;
   contact?: string;
-  image: string;
   title: string;
   skills?: string;
   aboutme?: string;

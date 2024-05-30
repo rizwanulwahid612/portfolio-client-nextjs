@@ -22,14 +22,17 @@ import styletext from '../../src/components/styles/textcolor.module.css'
 import { useUsersQuery } from "@/redux/api/userApi";
 
 import img1  from "../access/Untitled_design__1_-removebg-preview (1).png"
-import { FacebookOutlined, GithubOutlined, HomeOutlined, LinkedinOutlined, MailOutlined, PhoneOutlined, WhatsAppOutlined, YoutubeOutlined, DiscordOutlined, InstagramOutlined, TwitterOutlined } from "@ant-design/icons";
+import { FacebookOutlined, GithubOutlined, HomeOutlined, LinkedinOutlined, MailOutlined, PhoneOutlined, WhatsAppOutlined, YoutubeOutlined, DiscordOutlined, InstagramOutlined, TwitterOutlined, DownloadOutlined } from "@ant-design/icons";
 import Framework from "@/components/view/framework/framework";
+import Personalinfo from "@/components/view/personalinfo/personalinfo";
+import Hireme from "@/components/view/Hireme/Hireme";
+
 
 // eslint-disable-next-line @next/next/no-async-client-component
 export default async function Home() {
   const query: Record<string, any> = {};
-  const {data,isLoading}=useFrameworksQuery([])
-  const { data:adminsd } = useUsersQuery({ ...query });
+  const {data ,isLoading}=useFrameworksQuery([])
+  const { data:adminsd,isLoading:loading } = useUsersQuery({ ...query });
   
 
 const hgmga=adminsd?.users?.map((use:any)=>use?.image).join(' ') as string
@@ -43,6 +46,9 @@ const year = dateObject.getFullYear();
 console.log(year)
  
  if(isLoading){
+  return <div>Loading...</div>
+}
+ if(loading){
   return <div>Loading...</div>
 }
   return <>
@@ -68,26 +74,27 @@ return(
           
           <Image src={img1} alt=""  width={385} height={450} />
         </div>
-
+       
+  
+        
  <div className="h-1/2 lg:h-full lg:w-1/2 flex flex-col gap-2 items-center justify-center">
           {/* TITLE */}
           <h1 className={styletext.gradienttext}>
-            <h1 className="text-4xl md:text-8xl font-bold">
+            <h1 className="text-4xl md:text-6xl font-bold">
             {use?.name}
             </h1>
           </h1>
           <h2 className={styletext.gradienttext}>
-            <h2 className="text-4xl md:text-6xl font-bold">
+            <h2 className="text-3xl md:text-5xl font-bold">
             {use?.title}
             </h2>
           </h2>
            <h3 style={{display:"flex", justifyContent:"center",alignItems:"center"}} className={styletext.gradienttext}>
             <h3 className="text-2xl md:text-2xl font-bold">
 
-            {use?.degree} {use?.institute} {year}
+            {use?.degree} {use?.institute} 
             {/* || {use.contact} || {use.github} || {use.linkedin} || {use.website} || {use.whatsapp} */}
             </h3>
-            
           </h3>
            <h3 style={{display:"flex", justifyContent:"center",alignItems:"center"}} className={styletext.gradienttext}>
             <h3 className="text-2xl md:text-2xl font-bold">
@@ -122,6 +129,33 @@ return(
             {/* || {use.contact} || {use.github} || {use.linkedin} || {use.website} || {use.whatsapp} */}
             </h3>
           </h3>
+       
+
+
+ {/* BUTTONS */}
+          <div style={{marginTop:"20px",display:"flex",justifyContent:"center"}} className="w-full flex gap-4">
+             <Link href={`//${use?.cv}`} target="_blank" rel="noopener noreferrer">
+            <Button shape="round" style={{cursor:"pointer",height:"150%"}} className="bg-black text-white">
+              <DownloadOutlined />
+             <h3  className={styletext.gradienttext}>
+               My CV 
+              </h3>
+            </Button>
+            </Link>
+            <Link href={`//${use?.resume}`} target="_blank" rel="noopener noreferrer">
+            <Button shape="round" style={{cursor:"pointer",height:"150%"}} className="bg-black text-white">
+             <DownloadOutlined/>
+              <h3  className={styletext.gradienttext}>
+               Resume 
+              </h3>
+            </Button>
+            </Link>
+          </div>
+
+<br />
+<br />
+
+
 
 
          <div style={{display:"flex",gap:"4px"}}>
@@ -171,30 +205,35 @@ return(
           </div> */}
          </div>
          
+          <br />
+          <br />
           
           {/* DESC */}
           <p className="md:text-xl">
-I am web developer, I want to build up my career in IT and Computer Science and Engineering sectors. I have used some technology for web development.
+            <h1 className={styletext.gradienttext} style={{display:"flex",justifyItems:"flex-start",textAlign:"start"}}>OBJECTIVE</h1>
+            <br />
+This is Md.Rizwanul Wahid. I want to build up my career in IT and Computer Science and Engineering sectors through a competitive 
+and creative environment. I am {use?.title}. I have completed my degree {use?.degree} {use?.institute} {year}. Then, I started work with {use?.frontend} till now. Recently, I have {use?.experience1} which i attached into my {use?.features}. I have used some {use?.technologyFor} web development.
             <br/>
-           <span>FrontEnd:{use?.frontend}.</span> 
+           <span>{use?.front}:{use?.frontend}.</span> 
            <br/>
-           <span>Backend: {use?.backend}.</span>
+           <span>{use?.back}: {use?.backend}.</span>
            <br/>
-           <span>Tools:{use?.tools}</span>
+           <span>{use?.tool}:{use?.tools}.</span>
            <br/>
            <span>Soft Skill:{use?.skill}.</span>
            <br/>
-            <span>{use?.extracurriculam}.</span>
+            <span>Extracurriculam Activeties: {use?.extracurriculam}.</span>
             <br/>
             <span>Language: {use?.language}.</span>
             
           </p>
           
           {/* BUTTONS */}
-          <div className="w-full flex gap-4">
+          <div style={{marginTop:"20px"}} className="w-full flex gap-4">
              <Link
             href="/project">
-            <Button style={{cursor:"pointer",height:"150%"}} className="bg-black text-white">
+            <Button shape="round" style={{cursor:"pointer",height:"150%"}} className="bg-black text-white">
              <h3 className={styletext.gradienttext}>
               View My Work
               </h3>
@@ -202,7 +241,7 @@ I am web developer, I want to build up my career in IT and Computer Science and 
             </Link>
             <Link
             href="/contact">
-            <Button style={{cursor:"pointer",height:"150%"}} >
+            <Button shape="round" style={{cursor:"pointer",height:"150%"}} >
               <h3  className={styletext.gradienttext}>
                Contact Me
               </h3>
@@ -219,10 +258,14 @@ I am web developer, I want to build up my career in IT and Computer Science and 
       </div>
     </motion.div>
   </div>  
+  
   <AboutPage/>
-  <AchivementPage/>
+ 
+  
 <Framework/>
+<AchivementPage/>
 
+<Hireme/>
 
 
 

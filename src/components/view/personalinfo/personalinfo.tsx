@@ -24,9 +24,21 @@ const Personalinfo = () => {
  const { data:adminsd } = useUsersQuery([]);
   console.log("data:",adminsd)
   return (
+     <div>
     <motion.div
       className="h-full"
-      initial={{ y: "-200vh" }}
+      initial={{ y: "-400vh" }}
+      animate={{ y: "0%" }}
+      transition={{ duration: 1 }}
+    >
+      {/* CONTAINER */}
+      <div className="h-full overflow-scroll lg:flex" ref={containerRef}>
+        {/* TEXT CONTAINER */}
+        <div className="p-4 sm:p-8 md:p-8 lg:p-12 xl:p-8 flex flex-col gap-24 md:gap-24 lg:gap-24 xl:gap-24 lg:w-2/3 lg:pr-0 xl:w-1/2">
+          {/* BIOGRAPHY CONTAINER */}
+    <motion.div
+      className="h-full"
+      initial={{ y: "-400vh" }}
       animate={{ y: "0%" }}
       transition={{ duration: 1 }}
     >
@@ -64,13 +76,11 @@ const Personalinfo = () => {
               {adminsd?.users?.map((exper:any)=>{
                 return(
                   <>
-                  <div className="flex justify-between h-44">
+                  <div className="flex justify-between h-64">
                 {/* LEFT */}
                 <div  className="w-1/3 ">
                   {/* category */}
-                   <div style={{marginTop:"14px",width:"120px"}} className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">
-                    Name:{exper?.name}
-                  </div>
+                  
                   <div style={{marginTop:"14px",width:"120px"}} className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">
                     Fathers Name:{exper?.fathersname}
                   </div>
@@ -87,17 +97,13 @@ const Personalinfo = () => {
                     Gender:{exper?.gender}
                   </div>
                   <div style={{marginTop:"14px",width:"120px"}} className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">
-                   Height: {exper?.height}
+                   Height: {exper?.height};  Weight:{exper?.weight}
                   </div>
-                     <div style={{marginTop:"14px",width:"120px"}} className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">
-                    Weight:{exper?.weight}
-                  </div>
+                   
                   <div style={{marginTop:"14px",width:"120px"}} className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">
-                   SSC PASS: {exper?.ssc}
+                   SSC PASS: {exper?.ssc}; HSC PASS:{exper?.hsc}
                   </div>
-                     <div style={{marginTop:"14px",width:"120px"}} className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">
-                  HSC PASS:{exper?.hsc}
-                  </div>
+                  
                   <div style={{marginTop:"14px",width:"120px"}} className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">
                   NID: {exper?.nid}
                   </div>
@@ -132,6 +138,11 @@ const Personalinfo = () => {
       {/* </div> */}
       </>
     </motion.div>
+      </div>
+       
+      </div>
+    </motion.div>
+    </div>
   );
 };
 

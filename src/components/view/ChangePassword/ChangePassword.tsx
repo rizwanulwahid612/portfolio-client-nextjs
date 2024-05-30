@@ -60,9 +60,9 @@ console.log("validEmail:",validEmail)
   const onFinish = async (values: any) => {
     console.log(values)
     try {
-      //http://localhost:5000/api/v1
-      const response = await fetch(`http://localhost:3002/api/v1/auth/change-password`, {
-      //const response = await fetch(`https://donation-server-opal.vercel.app/api/v1/users/create-user`, {
+      
+     // const response = await fetch(`https://portfolio-server-ebon-rho.vercel.app/api/v1/auth/change-password`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/change-password`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

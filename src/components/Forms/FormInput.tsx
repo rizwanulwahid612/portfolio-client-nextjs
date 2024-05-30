@@ -15,11 +15,14 @@ interface IInput{
     label?:string;
     required?:boolean,
     disabled?:boolean,
-    onChange?:any
-}
+    multiple?: boolean;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    accept?:string;
+  }
 
-const FormInput = ({name,type,size,value,id,placeholder,validation,label,required,disabled}:IInput) => {
- const {control,formState:{errors}}=useFormContext()
+const FormInput = ({name,type,size,value,id,placeholder,validation,label,required,disabled, multiple,
+  onChange,accept}:IInput) => {
+ const {control ,formState:{errors}}=useFormContext()
 
  const errorMessage=getErrorMessageByPropertyName(errors,name)
 
@@ -37,14 +40,28 @@ const FormInput = ({name,type,size,value,id,placeholder,validation,label,require
           size={size} 
           placeholder={placeholder}
           {...field}
-          value={value?value:field.value} />
+          value={value?value:field.value}
+          onChange={(e) => {
+                field.onChange(e);
+                if (onChange) onChange(e);
+              }}
+          disabled={disabled}    
+          />
           ):(
         <Input
           type={type} 
           size={size} 
           placeholder={placeholder}
           {...field}
-          value={value?value:field.value} />    
+          value={value?value:field.value}
+           onChange={(e) => {
+                field.onChange(e);
+                if (onChange) onChange(e);
+              }}
+              multiple={multiple}
+              disabled={disabled}
+              accept={accept}
+              />    
           )
         )}
       />

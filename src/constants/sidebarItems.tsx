@@ -46,8 +46,23 @@ export const sidebarItems = (role: string) => {
   ];
 
   const commonUserSidebarItems: MenuProps["items"] = [
+        {
+      label: <Link href={`/${role}/experiance`}>Experiance</Link>,
+      icon: <TableOutlined />,
+      key: `/${role}/all-experiance`,
+    },
+      {
+      label: <Link href={`/${role}/skill`}>Skill</Link>,
+      icon: <TableOutlined />,
+      key: `/${role}/all-skill`,
+    },
+        {
+      label: <Link href={`/${role}/achivement`}>Achivement</Link>,
+      icon: <TableOutlined />,
+      key: `/${role}/all-achivement`,
+    },
     {
-      label: <Link href={`/${role}/framework`}>All Framework</Link>,
+      label: <Link href={`/${role}/framework`}>Framework</Link>,
       icon: <TableOutlined />,
       key: `/${role}/all-framework`,
     },
@@ -60,7 +75,7 @@ export const sidebarItems = (role: string) => {
   ];
 
   const userSidebarItems: MenuProps["items"] = [
-    ...defaultSidebarItems,
+    // ...defaultSidebarItems,
     ...commonUserSidebarItems,
   
   ];

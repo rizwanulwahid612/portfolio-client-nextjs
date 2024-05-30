@@ -33,6 +33,17 @@ export const selectBloodGroupOptions=[
         { value: 'O+', label: 'o+' },
         { value: 'O-', label: 'o-' },     
 ]
+export const selectPhotoGroupFolderOptions=[
+        { value: 'profile', label: 'Profile' },
+        { value: 'profile2', label: 'Profile1' },
+        { value: 'Profile3', label: 'Profile2'},
+         
+]
+export const selectImageUploadFolderName = [
+  "folder11",
+  "folder22",
+  "folder33",
+];
 
 // export const apointmentdaysInWeeks=[
         

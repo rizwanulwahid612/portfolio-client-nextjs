@@ -1,18 +1,21 @@
 "use client";
-import { Button, Card, Col,Typography } from "antd";
+import { Button, Card, Carousel, Col,Typography } from "antd";
 import { useEffect } from "react";
 import EMBreadCrumb from "@/components/ui/EMBreadCrumb/EMBreadCumb";
 import { getUserInfo, isLoggedIn } from "@/services/auth.service";
 import { USER_ROLE } from "@/constants/role";
 import { redirect } from "next/navigation";
+import Carouseluser from "@/components/view/Carouseluser/Carouseluser";
 import Meta from "antd/es/card/Meta";
 import Image from "next/image";
+
 const { Text } = Typography;
 
 
 import Link from "next/link";
 import { useUsersQuery } from "@/redux/api/userApi";
 //import { useAdminsQuery } from "@/redux/api/adminApi";
+
 
 const ProfilePage =  () => {
 
@@ -36,10 +39,15 @@ const adminsd: any = data?.users?.map((dam:any) => {
 }).filter(Boolean);
 
 console.log(adminsd);
-
-
+ 
+const imags3 =adminsd?.map((omgg:any)=>omgg?.imagess).flat()
+console.log(imags3)
   return (
+  
    <div>
+    
+    {/* <Carouseluser imags={imags} autoPlayInterval={5000}/> */}
+    
   <EMBreadCrumb
     items={[
       {
@@ -48,22 +56,26 @@ console.log(adminsd);
       },
     ]}
   />
+
+
   <h1 style={{ margin: "0px" }}>User Profile</h1>
   <div style={{display:"flex",justifyContent:"flex-end",marginBottom:"20px"}}>
  <Link href="/user/my-profile/create">
             <Button type="primary">Create User</Button>
           </Link>
   </div>
-   
+
   <div style={{ display: "flex", flexWrap: "wrap" }}>
     {adminsd?.map((admindata: any) => (
       <Col xs={24} sm={12} md={24} lg={24} xl={24} key={admindata?._id} style={{ margin: "0" }}>
         <Card
           hoverable
           style={{ width: "100%", justifyContent: 'center', display: 'block' }}
-          cover={<Image alt="example" src={admindata?.image} width={300} height={600} />}
+            cover={ <Carouseluser imags={imags3} autoPlayInterval={5000}/>}
         >
        
+   
+    
           <div style={{ display: "flex", justifyContent: "flex-end" }}>
             <Link href={`/user/my-profile/edit/${admindata?._id}`}>
               <Button type="primary">Edit</Button>
@@ -72,6 +84,15 @@ console.log(adminsd);
                 <h3>Name:{` `} {admindata?.name}</h3>
                 <h3>Title:{` `} {admindata?.title}</h3>
                 <h3>Email:{` `} {admindata?.email}</h3>
+                 <h3>Front:{` `} {admindata?.front}</h3> 
+                 <h3>Back:{` `} {admindata?.back}</h3>
+                <h3>CV:{` `} {admindata?.cv}</h3> 
+                <h3>Resume:{` `} {admindata?.resume}</h3>
+                <h3>Features:{` `} {admindata?.features}</h3> 
+                <h3>Framework:{` `} {admindata?.framework}</h3> 
+                <h3>TechnologyFor:{` `} {admindata?.technologyFor}</h3> 
+                <h3>Tool:{` `} {admindata?.email}</h3>  
+                <h3>Trainningcenter:{` `} {admindata?.trainningcenter}</h3>  
                 <h3>Skills:{` `} {admindata?.skills}</h3>
                 <h3>Date Of Birth: {` `}{admindata?.birth}</h3>
                 <h3>Gender:{` `} {admindata?.gender}</h3>
@@ -122,8 +143,9 @@ console.log(adminsd);
               </Card>
             </Col>
           ))}
-     
+      
       </div>
+      
     </div>
   );
 };

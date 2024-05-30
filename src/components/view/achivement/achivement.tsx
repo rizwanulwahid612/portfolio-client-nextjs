@@ -57,7 +57,7 @@ const AchivementPage = () => {
               animate={isExperienceRefInView ? { x: "0" } : {}}
               className=""
             >
-       
+          {/*        
               {/* EXPERIENCE LIST ITEM */}
               {exp?.achivement?.map((exper:any)=>{
                 return(
@@ -70,23 +70,19 @@ const AchivementPage = () => {
                     {exper?.category}
                   </div>
                   {/* DESC */}
-                  <div className="p-3 text-sm italic">
+                  <div className="p-3 text-lg italic">
                    {exper?.description}.{" "}
                   </div>
-                 
+                   {/* get */}
+                  <div className="p-1 rounded bg-white text-lg font-semibold w-fit">
+                    {exper?.get}
+                  </div>
                   {/* DATE */}
-                  <div className="p-3 text-red-400 text-sm font-semibold">
+                  <div className="p-3 text-red-400 text-lg font-semibold">
                     {exper?.date}
                   </div>
                   
-                  {/* certificate */}
-                  <div className="p-1 rounded bg-white text-sm font-semibold w-fit">
-                    {exper?.certificate}
-                  </div>
-                   {/* get */}
-                  <div className="p-1 rounded bg-white text-sm font-semibold w-fit">
-                    {exper?.get}
-                  </div>
+                 
                 </div>
                 {/* CENTER */}
                 <div className="w-1/6 flex justify-center">
@@ -99,21 +95,45 @@ const AchivementPage = () => {
                 {/* RIGHT */}
                 <div className="w-1/3 "></div>
               </div>
-              </>
+             
+              
+             
+              {/* EXPERIENCE LIST ITEM */}
+              <div  style={{marginBottom:"40px",display:"flex",boxShadow:"10px 20px 30px gray",border:"rounded"}} className="flex justify-between h-29">
+                {/* LEFT */}
+                <div className="w-1/2 "></div>
+                {/* CENTER */}
+                <div className="w-1/6 flex justify-center">
+                  {/* LINE */}
+                  <div className="w-1 h-full bg-gray-600 rounded relative">
+                    {/* LINE CIRCLE */}
+                    <div className="absolute w-5 h-5 rounded-full ring-4 ring-red-400 bg-white -left-2"></div>
+                  </div>
+                </div>
+                {/* RIGHT */}
+                <div className="w-1/3 ">
+                 
+                  
+                  {/* JOB DATE */}
+                  <div className="p-3 text-red-400 text-sm font-semibold">
+                     <Image src={exper?.certificate} width={400} height={400} alt=""/>
+                  </div>
+                  
+                </div>
+              </div>
+ </>
                 )
               })}
-              
-            
             </motion.div>
           </div>
         </div>
-      <div className="hidden lg:block w-1/3 sticky top-0 z-30 xl:w-1/2">
+      {/* <div className="hidden lg:block w-1/3 sticky top-0 z-30 xl:w-1/2">
          {exp?.achivement?.map((exper:any)=>{
                 return(
-                    <Image src={exper?.certificate} alt=""/>
+                    <Image src={exper?.certificate} width={400} height={400} alt=""/>
                 )})}
           
-        </div>
+        </div> */}
       </div>
     </motion.div>
   );

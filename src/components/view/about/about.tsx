@@ -31,6 +31,7 @@ const nameUser=adminsd?.users?.map((use:any)=>use?.name).join(' ') as string
  
   console.log("data:",exp)
   return (
+    <div>
     <motion.div
       className="h-full"
       initial={{ y: "-200vh" }}
@@ -62,13 +63,18 @@ const nameUser=adminsd?.users?.map((use:any)=>use?.name).join(' ') as string
            {aboutme}
             </p>
             {/* BIOGRAPHY QUOTE */}
-            <span className="italic">
+            <span className="text-lg  italic">
               I do hereby declare that the above information is true and correct to the Best of my knowledge.
             </span>
             {/* BIOGRAPHY SIGN SVG*/}
-            <div className="self-end">
+            <div className="self-end text-lg ">
               {nameUser}
             </div>
+            
+            <Personalinfo/>
+          
+    
+            <ExperiancePage/>
             {/* BIOGRAPHY SCROLL SVG */}
             <motion.svg
               initial={{ opacity: 0.2, y: 0 }}
@@ -114,7 +120,7 @@ const nameUser=adminsd?.users?.map((use:any)=>use?.name).join(' ') as string
             >
              {data?.skill?.map((p:any) => {
   return (
-    <div key={p?._id} className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:bg-white hover:text-black">
+    <div key={p?._id} className="rounded p-2 text-lg cursor-pointer bg-black text-white hover:bg-white hover:text-black">
       {p?.name}
     </div>
   );
@@ -145,15 +151,13 @@ const nameUser=adminsd?.users?.map((use:any)=>use?.name).join(' ') as string
               ></path>
             </motion.svg>
           </div>
-       <ExperiancePage/>
-       <Personalinfo/>
+      {/* personal info */}
+      
         </div>
-        {/* SVG CONTAINER
-        <div className="hidden lg:block w-1/3 sticky top-0 z-30 xl:w-1/2">
-          <Brain scrollYProgress={scrollYProgress} />
-        </div> */}
+       
       </div>
     </motion.div>
+    </div>
   );
 };
 
