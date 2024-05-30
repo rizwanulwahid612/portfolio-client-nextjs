@@ -135,9 +135,10 @@ console.log("validEmail:",validEmail)
         label="Email"
         name="email"
         initialValue={initialValue.validEmail}
+        
         rules={[{ required: true, message: "Please input your email!" }]}
       >
-        <Input type="email" />
+        <Input type="email" disabled />
       </Form.Item>
       <Form.Item<FieldType>
         label="Old Password"
