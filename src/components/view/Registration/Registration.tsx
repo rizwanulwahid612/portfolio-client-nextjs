@@ -306,7 +306,7 @@ console.log(defaultValues)
                   type="text"
                   name="features"
                   size="large"
-                  label="Features"
+                  label="Features as cv/resume/papers"
                 />
               </Col>
                <Col
@@ -801,14 +801,14 @@ console.log(defaultValues)
                <Col span={12} style={{ margin: "10px 0" }}>
                 <FormTextArea
                   name="experience1"
-                  label="Experience:1"
+                  label="Experience:1 created some project"
                   rows={4}
                 />
               </Col>
               <Col span={12} style={{ margin: "10px 0" }}>
                 <FormTextArea
                   name="experience2"
-                  label="Experience:2"
+                  label="Experience:2 web technologies"
                   rows={4}
                 />
               </Col>

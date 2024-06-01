@@ -28,7 +28,7 @@ console.log(`Current time: ${hours}:${minutes}:${seconds}`);
     return (
         // <Footer style={{ textAlign: 'center', backgroundColor: "black", color: "white", height: "250px" }}>
 
-        <footer style={{ textAlign:'center', backgroundColor: "black", color: "white", height: "300px" }} className="footer p-10 bg-neutral text-neutral-content">
+        <footer style={{ textAlign:'center', backgroundColor: "black", color: "white", height: "350px" }} className="footer p-10 bg-neutral text-neutral-content">
             <h1 style={{marginBottom:"10px"}}><span className={styletext.gradienttext}> My Portfolio Web Page </span></h1>
             <div style={{display:"flex",justifyContent:"space-around",marginBottom:"20px",gap:"10px"}}>
               <div >
@@ -37,9 +37,9 @@ console.log(`Current time: ${hours}:${minutes}:${seconds}`);
           <div >
               <p style={{ fontSize: '15px',width:"24px 44px 24px 10px ",height:"34px" }}><PhoneOutlined />{usePhone}</p>
           </div>
-          <div >
+          {/* <div >
               <p style={{ fontSize: '15px',width:"24px 44px 24px 10px ",height:"34px" }}><WhatsAppOutlined />{useWhatsapp}</p>
-          </div>
+          </div> */}
           </div>
             <nav>
                 <header className="footer-title">
@@ -88,15 +88,17 @@ return(
           
 )})}
             </nav>
+         
               <aside>
              
                 <h1> <span className={styletext.gradienttext}>{useName}</span></h1>
                 <h3 className={styletext.gradienttext} >Address:{address1}</h3>
-                <h3 style={{display:"flex",justifyContent:"center",marginBottom:"20px"}}>{day}-{month}-{year} : {hours}:{minutes}:{seconds}</h3>
+                <h3 style={{display:"flex",justifyContent:"center",}}>{day}-{month}-{year} : {hours}:{minutes}:{seconds}</h3>
                 
             
                 
             </aside>
+           
         </footer>
         // </Footer>
     )

@@ -51,7 +51,7 @@ const Navbar = ({
 
   return (
     <Layout className="layout">
-      <Header className="flex items-center">
+      <Header className="flex items-center w-screen">
         {hasSider && (
           <Button
             type="primary"

@@ -63,16 +63,16 @@ console.log(year)
       animate={{ y: "0%" }}
       transition={{ duration: 1 }}
     >
-      <div className="h-full flex flex-col lg:flex-row px-4 sm:px-8 md:px-12 lg:px-20 xl:px-48">
+      <div className="h-full  flex flex-col lg:flex-row px-4 sm:px-8 md:px-12 lg:px-20 xl:px-48">
        
        
       
         {adminsd?.users?.map((use:any)=>{
 return(
   <>
- <div className="h-1/2 lg:h-full lg:w-1/2 relative" >
+ <div className="h-1/2 lg:h-full lg:w-1/2 flex flex-col gap-2 items-center justify-center" >
           
-          <Image src={img1} alt=""  width={385} height={450} />
+          <Image src={img1} alt=""  width={350} height={450} />
         </div>
        
   
@@ -80,12 +80,12 @@ return(
  <div className="h-1/2 lg:h-full lg:w-1/2 flex flex-col gap-2 items-center justify-center">
           {/* TITLE */}
           <h1 className={styletext.gradienttext}>
-            <h1 className="text-4xl md:text-6xl font-bold">
+            <h1 className="text-3xl md:text-4xl font-bold">
             {use?.name}
             </h1>
           </h1>
           <h2 className={styletext.gradienttext}>
-            <h2 className="text-3xl md:text-5xl font-bold">
+            <h2 className="text-3xl md:text-4xl font-bold">
             {use?.title}
             </h2>
           </h2>
@@ -212,8 +212,8 @@ return(
           <p className="md:text-xl">
             <h1 className={styletext.gradienttext} style={{display:"flex",justifyItems:"flex-start",textAlign:"start"}}>OBJECTIVE</h1>
             <br />
-This is Md.Rizwanul Wahid. I want to build up my career in IT and Computer Science and Engineering sectors through a competitive 
-and creative environment. I am {use?.title}. I have completed my degree {use?.degree} {use?.institute} {year}. Then, I started work with {use?.frontend} till now. Recently, I have {use?.experience1} which i attached into my {use?.features}. I have used some {use?.technologyFor} web development.
+This is {use?.name}. I want to serve my career in IT and Computer Science and Engineering sectors through a competitive 
+and creative environment. I am {use?.title}. I have completed my degree {use?.degree} from {use?.institute} in {year}.I started work with {use?.experience2} till now. Recently, I have {use?.experience1} which i attached into my {use?.features}. I have used some {use?.technologyFor} web development.
             <br/>
            <span>{use?.front}:{use?.frontend}.</span> 
            <br/>
@@ -221,7 +221,7 @@ and creative environment. I am {use?.title}. I have completed my degree {use?.de
            <br/>
            <span>{use?.tool}:{use?.tools}.</span>
            <br/>
-           <span>Soft Skill:{use?.skill}.</span>
+           <span>Soft Skill:{use?.skills}.</span>
            <br/>
             <span>Extracurriculam Activeties: {use?.extracurriculam}.</span>
             <br/>
@@ -264,7 +264,7 @@ and creative environment. I am {use?.title}. I have completed my degree {use?.de
   
 <Framework/>
 <AchivementPage/>
-
+<br/>
 <Hireme/>
 
 
@@ -272,13 +272,14 @@ and creative environment. I am {use?.title}. I have completed my degree {use?.de
 <div>
   
 </div>
+<FooterPage/>
  </div> 
       
        
 
 
         
-<FooterPage/>
+
   
   </>
 }

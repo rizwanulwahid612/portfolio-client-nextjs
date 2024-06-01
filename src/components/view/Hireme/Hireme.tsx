@@ -3,7 +3,7 @@ import styletext from '../../styles/textcolor.module.css'
 import { motion, useScroll, useTransform } from "framer-motion";
 const Hireme = () => {
   return (
-    <div className="w-screen h-screen flex flex-col gap-16 items-center justify-center text-center">
+    <div className=" h-screen flex flex-col gap-16 items-center justify-center text-center">
         <h2 className="text-6xl">
          <h4 className={styletext.gradienttext}> Do you have a project?</h4>
     </h2>

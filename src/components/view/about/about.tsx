@@ -39,7 +39,7 @@ const nameUser=adminsd?.users?.map((use:any)=>use?.name).join(' ') as string
       transition={{ duration: 1 }}
     >
       {/* CONTAINER */}
-      <div className="h-full overflow-scroll lg:flex" ref={containerRef}>
+      <div className="h-full  overflow-scroll lg:flex" ref={containerRef}>
         {/* TEXT CONTAINER */}
         <div className="p-4 sm:p-8 md:p-12 lg:p-12 xl:p-12 flex flex-col gap-24 md:gap-24 lg:gap-24 xl:gap-24">
           {/* BIOGRAPHY CONTAINER */}
@@ -100,7 +100,7 @@ const nameUser=adminsd?.users?.map((use:any)=>use?.name).join(' ') as string
             </motion.svg>
           </div>
           {/* SKILLS CONTAINER */}
-          <div className="flex flex-col gap-12 justify-center" ref={skillRef}>
+          <div className=" flex flex-col gap-12 justify-center" ref={skillRef}>
             {/* SKILL TITLE */}
             <motion.h1
               initial={{ x: "-300px" }}

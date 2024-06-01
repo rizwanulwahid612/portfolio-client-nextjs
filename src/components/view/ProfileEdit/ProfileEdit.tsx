@@ -432,7 +432,7 @@ const handleFolderChange = async (event: React.ChangeEvent<HTMLSelectElement>) =
                   type="text"
                   name="framework"
                   size="large"
-                  label="Framework"
+                  label="Framework as cv/resume/papers"
                 />
               </Col>
 
@@ -897,14 +897,14 @@ const handleFolderChange = async (event: React.ChangeEvent<HTMLSelectElement>) =
                <Col span={12} style={{ margin: "10px 0" }}>
                 <FormTextArea
                   name="experience1"
-                  label="Experience:1"
+                  label="Experience:1 created some project"
                   rows={4}
                 />
               </Col>
               <Col span={12} style={{ margin: "10px 0" }}>
                 <FormTextArea
                   name="experience2"
-                  label="Experience:2"
+                  label="Experience:2 web technologies"
                   rows={4}
                 />
               </Col>
