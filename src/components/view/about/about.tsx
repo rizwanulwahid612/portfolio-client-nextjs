@@ -31,7 +31,7 @@ const nameUser=adminsd?.users?.map((use:any)=>use?.name).join(' ') as string
  
   console.log("data:",exp)
   return (
-    <div>
+    <div style={{marginTop:"-170px"}}>
     <motion.div
       className="h-full"
       initial={{ y: "-200vh" }}

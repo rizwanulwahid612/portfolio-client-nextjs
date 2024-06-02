@@ -35,7 +35,7 @@ export default async function Home() {
   const { data:adminsd,isLoading:loading } = useUsersQuery({ ...query });
   
 
-const hgmga=adminsd?.users?.map((use:any)=>use?.image).join(' ') as string
+
 const daterr=adminsd?.users?.map((use:any)=>use?.passingyear).join(' ') as string
 
  console.log("adminsd",adminsd)
@@ -133,7 +133,8 @@ return(
 
 
  {/* BUTTONS */}
-          <div style={{marginTop:"20px",display:"flex",justifyContent:"center"}} className="w-full flex gap-4">
+<br/>
+          <div className="h-1/2 lg:h-full lg:w-1/2 flex flex-row gap-2 items-center justify-center">
              <Link href={`//${use?.cv}`} target="_blank" rel="noopener noreferrer">
             <Button shape="round" style={{cursor:"pointer",height:"150%"}} className="bg-black text-white">
               <DownloadOutlined />
@@ -152,8 +153,8 @@ return(
             </Link>
           </div>
 
-<br />
-<br />
+
+
 
 
 
@@ -206,31 +207,13 @@ return(
          </div>
          
           <br />
-          <br />
+          <br/>
           
           {/* DESC */}
-          <p className="md:text-xl">
-            <h1 className={styletext.gradienttext} style={{display:"flex",justifyItems:"flex-start",textAlign:"start"}}>OBJECTIVE</h1>
-            <br />
-This is {use?.name}. I want to serve my career in IT and Computer Science and Engineering sectors through a competitive 
-and creative environment. I am {use?.title}. I have completed my degree {use?.degree} from {use?.institute} in {year}.I started work with {use?.experience2} till now. Recently, I have {use?.experience1} which i attached into my {use?.features}. I have used some {use?.technologyFor} web development.
-            <br/>
-           <span>{use?.front}:{use?.frontend}.</span> 
-           <br/>
-           <span>{use?.back}: {use?.backend}.</span>
-           <br/>
-           <span>{use?.tool}:{use?.tools}.</span>
-           <br/>
-           <span>Soft Skill:{use?.skills}.</span>
-           <br/>
-            <span>Extracurriculam Activeties: {use?.extracurriculam}.</span>
-            <br/>
-            <span>Language: {use?.language}.</span>
-            
-          </p>
+        
           
           {/* BUTTONS */}
-          <div style={{marginTop:"20px"}} className="w-full flex gap-4">
+         <div className="h-1/2 lg:h-full lg:w-1/2 flex flex-row gap-2 items-center justify-center">
              <Link
             href="/project">
             <Button shape="round" style={{cursor:"pointer",height:"150%"}} className="bg-black text-white">
@@ -248,6 +231,7 @@ and creative environment. I am {use?.title}. I have completed my degree {use?.de
             </Button>
             </Link>
           </div>
+          
         </div>
 
 </>
@@ -255,10 +239,48 @@ and creative environment. I am {use?.title}. I have completed my degree {use?.de
 
         })}
 
+
+  
       </div>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      
+        {adminsd?.users?.map((user: any, index: number) => (
+  <div key={index}>
+    <div className="md:text-xl">
+      <h1 className={styletext.gradienttext} style={{ display: "flex", justifyItems: "flex-start", textAlign: "start" }}>
+        OBJECTIVE
+      </h1>
+      <br />
+      This is {user?.name}. I want to serve my career in IT and Computer Science and Engineering sectors through a competitive 
+      and creative environment. I am {user?.title}. I have completed my degree {user?.degree} from {user?.institute} in {user?.year}.
+      I started work with {user?.experience2} till now. Recently, I have {user?.experience1} which I attached into my {user?.features}. 
+      I have used some {user?.technologyFor} web development.
+      <br/>
+      <span>{user?.front}: {user?.frontend}.</span>
+      <br/>
+      <span>{user?.back}: {user?.backend}.</span>
+      <br/>
+      <span>{user?.tool}: {user?.tools}.</span>
+      <br/>
+      <span>Soft Skill: {user?.skills}.</span>
+      <br/>
+      <span>Extracurricular Activities: {user?.extracurriculam}.</span>
+      <br/>
+      <span>Language: {user?.language}.</span>
+    </div>
+  </div>
+))}
+
+
+
+
     </motion.div>
   </div>  
-  
+   
+
   <AboutPage/>
  
   

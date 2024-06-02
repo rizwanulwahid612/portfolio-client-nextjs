@@ -51,11 +51,11 @@ const Projects =() => {
            
                 <h3>Name:{` `} {admindata?.name}</h3>
                 <h3>Title:{` `} {admindata?.title}</h3>
-                <h3>Owmer Name:{` `} {admindata?.ownername}</h3>
+                <h3>Owner Name:{` `} {admindata?.ownername}</h3>
                 <h3>Description:{` `} {admindata?.description}</h3>
                 <h3>FrontEnd: {` `}{admindata?.frontend}</h3>
                 <h3>BackEnd:{` `} {admindata?.backend}</h3>
-                <h3>Techonology: {` `}{admindata?.techonology}</h3>
+                {/* <h3>Techonology: {` `}{admindata?.techonology}</h3> */}
 
 
               </Card>
