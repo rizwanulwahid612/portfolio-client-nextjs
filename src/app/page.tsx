@@ -48,9 +48,9 @@ console.log(year)
  if(isLoading){
   return <div>Loading...</div>
 }
- if(loading){
-  return <div>Loading...</div>
-}
+//  if(loading){
+//   return <div>Loading...</div>
+// }
   return <>
   {/* <div className="bg-gradient-to-r from-purple-300 to-red-300"> */}
   <div className="bg-gradient-to-r from-blue-300 to-skyblue-600">

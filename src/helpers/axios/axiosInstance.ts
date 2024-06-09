@@ -31,14 +31,20 @@ instance.interceptors.response.use(
     const responseObject: ResponseSuccessType = {
       data: response?.data?.data,
       meta: response?.data?.meta,
-      status: response?.data?.statusCode,
-      message: response?.data?.message,
-      success: response?.data.success,
     };
     return responseObject;
   },
   async function (error) {
-    if (error?.response?.status === 403) {
+    const config = error?.config;
+
+    if (error?.response?.status === 403 && !config?.sent) {
+      config.sent = true;
+      const response = await getNewAccessToken();
+      console.log(response);
+      const accessToken = response?.data?.accessToken;
+      config.headers["Authorization"] = accessToken;
+      setToLocalStorage(authKey, accessToken);
+      return instance(config);
     } else {
       const responseObject: IGenericErrorResponse = {
         statusCode: error?.response?.data?.statusCode || 500,
