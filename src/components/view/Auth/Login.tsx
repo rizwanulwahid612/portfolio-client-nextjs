@@ -33,6 +33,7 @@ const LoginPage = () => {
       const res = await userLogin({ ...data }).unwrap();
       // console.log(res);
       if (res?.accessToken) {
+        
          storeUserInfo({ accessToken: res?.accessToken });
          const {role} = getUserInfo()as any
         router.push(`${role}/my-profile`);
@@ -93,7 +94,7 @@ const LoginPage = () => {
             </Button>
           </Form>
         </div>
-        <div style={{display:"flex",justifyContent:"flex-end"}}>
+        <div style={{display:"flex",justifyContent:"flex-end",color:"white"}}>
            <Link href={"/forgot-password"}> Forgot Password!</Link>
         </div>
         

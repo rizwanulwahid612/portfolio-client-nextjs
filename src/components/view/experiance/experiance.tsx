@@ -61,15 +61,15 @@ const ExperiancePage = () => {
               {exp?.experiance?.map((exper:any)=>{
                 return(
                   <>
-                  <div  className="flex justify-between h-50">
+                  <div style={{width:"auto"}} className="flex justify-between h-50">
                 {/* LEFT */}
-                <div  className="w-1/3 ">
+                <div style={{width:"auto"}} >
                   {/* JOB TITLE */}
                   <div className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">
                     {exper?.title}
                   </div>
                   {/* JOB DESC */}
-                  <div className="p-4 text-lg italic">
+                  <div  style={{color:"skyblue"}} className="p-4 text-lg italic">
                    {exper?.description}.{" "}
                   </div>
                  

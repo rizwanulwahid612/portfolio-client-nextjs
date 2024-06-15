@@ -28,7 +28,7 @@ console.log(`Current time: ${hours}:${minutes}:${seconds}`);
     return (
         // <Footer style={{ textAlign: 'center', backgroundColor: "black", color: "white", height: "250px" }}>
 
-        <footer style={{ textAlign:'center', backgroundColor: "black", color: "white", height: "350px" }} className="footer p-10 bg-neutral text-neutral-content">
+        <footer style={{ textAlign:'center', backgroundColor: "black", color: "white", height: "full" }} className="footer p-10 bg-neutral text-neutral-content">
             <h1 style={{marginBottom:"10px"}}><span className={styletext.gradienttext}> My Portfolio Web Page </span></h1>
             <div style={{display:"flex",justifyContent:"space-around",marginBottom:"20px",gap:"10px"}}>
               <div >
@@ -80,16 +80,9 @@ return(
           </Link>
          
          </div>
-         <div style={{display:"flex",textAlign:"center",alignItems:'center'}}>
+         <div >
 
-         </div>
-         
-         </>
-          
-)})}
-            </nav>
-         
-              <aside>
+           <aside>
              
                 <h1> <span className={styletext.gradienttext}>{useName}</span></h1>
                 <h3 className={styletext.gradienttext} >Address:{address1}</h3>
@@ -98,6 +91,15 @@ return(
             
                 
             </aside>
+
+         </div>
+         
+         </>
+          
+)})}
+            </nav>
+         
+             
            
         </footer>
         // </Footer>

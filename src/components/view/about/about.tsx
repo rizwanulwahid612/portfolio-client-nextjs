@@ -16,6 +16,7 @@ const AboutPage = () => {
 const hgmga=adminsd?.users?.map((use:any)=>use?.image).join(' ') as string
 const aboutme=adminsd?.users?.map((use:any)=>use?.aboutme).join(' ') as string
 const nameUser=adminsd?.users?.map((use:any)=>use?.name).join(' ') as string
+const userBiography=adminsd?.users?.map((use:any)=>use?.experience4).join(' ') as string
   const containerRef = useRef() as any;
 
   const { scrollYProgress } = useScroll({ container: containerRef } as {container:any});
@@ -58,19 +59,21 @@ const nameUser=adminsd?.users?.map((use:any)=>use?.name).join(' ') as string
               BIOGRAPHY
               </h1>
               </h1>
-            {/* BIOGRAPHY DESC */}
-            <p className="text-lg">
+            {/* BIOGRAPHY DESC */} 
+            <p style={{color:"skyblue"}} className="text-lg">
            {aboutme}
             </p>
             {/* BIOGRAPHY QUOTE */}
-            <span className="text-lg  italic">
-              I do hereby declare that the above information is true and correct to the Best of my knowledge.
+           <div style={{padding:"8px"}}>
+            <span style={{color:"skyblue",marginTop:"-30px"}} className="text-lg  italic">
+              {userBiography}
+              {/* I do hereby declare that the above information is true and correct to the Best of my knowledge. */}
             </span>
             {/* BIOGRAPHY SIGN SVG*/}
-            <div className="self-end text-lg ">
+            <div style={{color:"skyblue"}} className="self-end text-lg ">
               {nameUser}
             </div>
-            
+            </div>
             <Personalinfo/>
           
     

@@ -911,14 +911,14 @@ const handleFolderChange = async (event: React.ChangeEvent<HTMLSelectElement>) =
               <Col span={12} style={{ margin: "10px 0" }}>
                 <FormTextArea
                   name="experience3"
-                  label="Experience:3"
+                  label="Graphic Designer"
                   rows={4}
                 />
               </Col>
               <Col span={12} style={{ margin: "10px 0" }}>
                 <FormTextArea
                   name="experience4"
-                  label="Experience:4"
+                  label="User Biography"
                   rows={4}
                 />
               </Col>

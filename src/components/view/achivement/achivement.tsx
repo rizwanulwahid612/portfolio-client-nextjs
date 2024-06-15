@@ -30,7 +30,7 @@ const AchivementPage = () => {
       transition={{ duration: 1 }}
     >
       {/* CONTAINER */}
-      <div className="h-full  overflow-scroll lg:flex" ref={containerRef}>
+      <div  className="h-full  overflow-scroll lg:flex" ref={containerRef}>
         {/* TEXT CONTAINER */}
         <div className="p-4 sm:p-8 md:p-8 lg:p-12 xl:p-8 flex flex-col gap-24 md:gap-24 lg:gap-24 xl:gap-24 lg:w-2/3 lg:pr-0 xl:w-1/2">
      
@@ -62,7 +62,7 @@ const AchivementPage = () => {
               {exp?.achivement?.map((exper:any)=>{
                 return(
                   <>
-                  <div className="flex justify-between h-44">
+                  <div style={{width:"auto"}} className="flex justify-between h-44">
                 {/* LEFT */}
                 <div className="w-1/3 ">
                   {/* category */}
@@ -70,7 +70,7 @@ const AchivementPage = () => {
                     {exper?.category}
                   </div>
                   {/* DESC */}
-                  <div className="p-3 text-lg italic">
+                  <div  style={{color:"skyblue"}} className="p-3 text-lg italic">
                    {exper?.description}.{" "}
                   </div>
                    {/* get */}
@@ -99,7 +99,7 @@ const AchivementPage = () => {
               
              
               {/* EXPERIENCE LIST ITEM */}
-              <div  style={{marginBottom:"40px",display:"flex",boxShadow:"10px 20px 30px gray",border:"rounded"}} className="flex justify-between h-29">
+              <div  style={{width:"auto",marginBottom:"40px",display:"flex",boxShadow:"10px 20px 30px gray",border:"rounded"}} className="flex justify-between h-29">
                 {/* LEFT */}
                 <div className="w-1/2 "></div>
                 {/* CENTER */}

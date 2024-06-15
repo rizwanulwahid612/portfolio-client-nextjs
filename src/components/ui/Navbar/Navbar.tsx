@@ -9,7 +9,7 @@ import { Button, Drawer, Layout, Menu, Typography } from "antd";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import styletext from "../../styles/textcolor.module.css"
+import styletext from '../../styles/textcolor.module.css'
 const { Header, Content } = Layout;
 const { Title } = Typography;
 
@@ -91,19 +91,20 @@ const Navbar = ({
           mode="horizontal"
           selectedKeys={[pathname]}
           items={sidebarItems(role)}
+          
         />
       
-     <div className="lg:block hidden">
+     <div  className="lg:block hidden">
   {role ? (
             <Button
-              type="primary"
+              // type="primary"
               onClick={logOut}
             >
               Sign Out
             </Button>
           ) : (
             <Button
-              type="primary"
+              // type="primary"
               onClick={() => {
                router.push("/login");
               }}
@@ -112,16 +113,19 @@ const Navbar = ({
             </Button>
           )} 
         </div>
-        <>
-        <Button type="primary" className="lg:hidden" onClick={showDrawer}>
+        <div >
+        <Button  className="lg:hidden" onClick={showDrawer}>
           <MenuOutlined />
         </Button>
-        <Drawer width={250} title="Menu" placement="right" onClose={onClose} open={open}>
+        
+        <Drawer style={{ background: "linear-gradient(to right, rgba(32, 10, 69, 0.993), rgba(102, 61, 179, 0.993),rgb(179, 79, 197))"}} width={250} title="Menu" placement="right" onClose={onClose} open={open}>
           <Menu
+            
             theme="light"
             mode="vertical"
             selectedKeys={[pathname]}
-            style={{ borderRight: 0 }}
+            
+            style={{ borderRight: 0,color:"white", background: "linear-gradient(to right, rgba(32, 10, 69, 0.993), rgba(102, 61, 179, 0.993),rgb(179, 79, 197))" }}
             disabledOverflow
              items={sidebarItems(role)} 
             
@@ -130,14 +134,14 @@ const Navbar = ({
           </Menu>
             {role ? (
             <Button
-              type="primary"
+              // type="primary"
               onClick={logOut}
             >
               Sign Out
             </Button>
           ) : (
             <Button
-              type="primary"
+              // type="primary"
               onClick={() => {
                router.push("/login");
               }}
@@ -146,7 +150,8 @@ const Navbar = ({
             </Button>
           )} 
         </Drawer>
-        </>
+        
+        </div>
       </Header>
     </Layout>
   );

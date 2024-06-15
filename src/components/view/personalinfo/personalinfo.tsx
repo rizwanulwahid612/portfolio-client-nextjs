@@ -76,41 +76,41 @@ const Personalinfo = () => {
               {adminsd?.users?.map((exper:any)=>{
                 return(
                   <>
-                  <div className="flex justify-between h-64">
+                  <div style={{height:"500px"}} className="flex justify-between">
                 {/* LEFT */}
-                <div  className="w-1/3 ">
+                <div style={{width:"1400px"}} >
                   {/* category */}
                   
-                  <div style={{marginTop:"14px",width:"120px"}} className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">
+                  <div style={{marginTop:"14px",width:"auto"}} className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">
                     Fathers Name:{exper?.fathersname}
                   </div>
-                  <div style={{marginTop:"14px",width:"120px"}} className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">
+                  <div style={{marginTop:"14px",width:"auto"}} className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">
                    Mothers Name: {exper?.mothersname}
                   </div>
-                     <div style={{marginTop:"14px",width:"120px"}} className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">
-                    Birth Date:{exper?.fathersname}
+                     <div style={{marginTop:"14px",width:"auto"}} className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">
+                    Birth Date:{exper?.birth}
                   </div>
-                  <div style={{marginTop:"14px",width:"120px"}} className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">
-                   Blood Group: {exper?.mothersname}
+                  <div style={{marginTop:"14px",width:"auto"}} className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">
+                   Blood Group: {exper?.blood}
                   </div>
-                     <div style={{marginTop:"14px",width:"120px"}} className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">
+                     <div style={{marginTop:"14px",width:"auto"}} className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">
                     Gender:{exper?.gender}
                   </div>
-                  <div style={{marginTop:"14px",width:"120px"}} className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">
-                   Height: {exper?.height};  Weight:{exper?.weight}
+                  <div style={{marginTop:"14px",width:"auto"}} className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">
+                   Height: {exper?.height}; <br /> Weight:{exper?.weight}
                   </div>
                    
-                  <div style={{marginTop:"14px",width:"120px"}} className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">
-                   SSC PASS: {exper?.ssc}; HSC PASS:{exper?.hsc}
+                  <div style={{marginTop:"14px",width:"auto"}} className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">
+                   SSC PASS: {exper?.ssc}; <br /> HSC PASS:{exper?.hsc}
                   </div>
                   
-                  <div style={{marginTop:"14px",width:"120px"}} className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">
+                  <div style={{marginTop:"14px",width:"auto"}} className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">
                   NID: {exper?.nid}
                   </div>
-                     <div style={{marginTop:"14px",width:"120px"}} className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">
+                     <div style={{marginTop:"14px",width:"auto"}} className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">
                    Married Status:{exper?.marriedstatus}
                   </div>
-                  <div style={{marginTop:"14px",width:"120px"}} className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">
+                  <div style={{marginTop:"14px",width:"auto"}} className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">
                    Permanent Address: {exper?.parmanentaddress}
                   </div>
                 

@@ -37,9 +37,9 @@ const text = "Say Hello";
 
   return (
   
-    <div>
+    <div className= {styletext.gradienbg}>
       
-      <div style={{display:"flex",justifyContent:"flex-start",margin:"20px"}}>
+      <div style={{color:"white",display:"flex",justifyContent:"flex-start",margin:"20px"}}>
       
 <h3 className="text-4xl">
    <h3 className={styletext.gradienttext}>
@@ -56,7 +56,7 @@ const text = "Say Hello";
       <div className="h-full flex flex-col lg:flex-row px-4 sm:px-8 md:px-12 lg:px-20 xl:px-48">
         {/* TEXT CONTAINER */}
         <div className="h-1/2 lg:h-full lg:w-1/2 flex items-center justify-center text-4xl">
-          <div>
+          <div style={{color:"white"}}>
             {text.split("").map((letter, index) => (
               <motion.span
                 key={index}
@@ -78,9 +78,10 @@ const text = "Say Hello";
   
        </div>
      </motion.div>
-      <div >
+      <div style={{color:"white"}}>
         <Form submitHandler={onSubmit}>
           <div
+          
             style={{
               border: "1px solid #d9d9d9",
               borderRadius: "5px",
@@ -113,6 +114,7 @@ const text = "Say Hello";
                 />
               </Col>
                <Col
+               
                 className="gutter-row"
                 span={8}
                 style={{

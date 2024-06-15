@@ -53,7 +53,7 @@ console.log(year)
 // }
   return <>
   {/* <div className="bg-gradient-to-r from-purple-300 to-red-300"> */}
-  <div className="bg-gradient-to-r from-blue-300 to-skyblue-600">
+  <div className= {styletext.gradienbg}>
   <PublicHeader/>
   
   <div style={{display:"flex",justifyContent:"center",margin:"40px"}}>
@@ -70,10 +70,19 @@ console.log(year)
         {adminsd?.users?.map((use:any)=>{
 return(
   <>
- <div className="h-1/2 lg:h-full lg:w-1/2 flex flex-col gap-2 items-center justify-center" >
+ <div className= "h-1/2 lg:h-full lg:w-1/2 flex flex-col gap-2 items-center justify-center" >
+ 
+          <div className={styletext.boximages}>
+            <div className={styletext.content}>
+              <Image src={img1} alt=""  width={327} height={500} />
+              {/* <h2 style={{position:"relative",fontSize:"1.5em",color:"#fff",fontWeight:"600px",letterSpacing:"0.05em",textTransform:"uppercase"}}>{use?.name}<br/><span style={{fontWeight:"300px", fontSize:"0.75em"}}>UX/UI Designer</span></h2>
+              <Link style={{position:"relative", marginTop:"10px", padding:"10pxx 20px",background:"#fff",color:"#070alc",borderRadius:"25px",fontWeight:"500px",textTransform:"uppercase",letterSpacing:"8.05em",textDecoration:"none",transition:"0.5s"}} href="/contact">Hire Me</Link> */}
+            </div>
+           
+          </div>
           
-          <Image src={img1} alt=""  width={350} height={450} />
         </div>
+   
        
   
         
@@ -87,6 +96,11 @@ return(
           <h2 className={styletext.gradienttext}>
             <h2 className="text-3xl md:text-4xl font-bold">
             {use?.title}
+            </h2>
+          </h2>
+          <h2 className={styletext.gradienttext}>
+            <h2 className="text-3xl md:text-4xl font-bold">
+            {use?.experience3}
             </h2>
           </h2>
            <h3 style={{display:"flex", justifyContent:"center",alignItems:"center"}} className={styletext.gradienttext}>
@@ -249,11 +263,12 @@ return(
       
         {adminsd?.users?.map((user: any, index: number) => (
   <div key={index}>
-    <div className="md:text-xl">
-      <h1 className={styletext.gradienttext} style={{ display: "flex", justifyItems: "flex-start", textAlign: "start" }}>
+    <div className="md:text-xl sm:text-xl lg:text-xl">
+      <h1 className={styletext.gradienttext} style={{padding:"20px", display: "flex", justifyItems: "flex-start", textAlign: "start" }}>
         OBJECTIVE
       </h1>
       <br />
+      <div style={{padding:"20px",color:"skyblue"}}>
       This is {user?.name}. I want to serve my career in IT and Computer Science and Engineering sectors through a competitive 
       and creative environment. I am {user?.title}. I have completed my degree {user?.degree} from {user?.institute} in {user?.year}.
       I started work with {user?.experience2} till now. Recently, I have {user?.experience1} which I attached into my {user?.features}. 
@@ -270,6 +285,7 @@ return(
       <span>Extracurricular Activities: {user?.extracurriculam}.</span>
       <br/>
       <span>Language: {user?.language}.</span>
+      </div>
     </div>
   </div>
 ))}

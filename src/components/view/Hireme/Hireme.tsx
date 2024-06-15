@@ -3,7 +3,7 @@ import styletext from '../../styles/textcolor.module.css'
 import { motion, useScroll, useTransform } from "framer-motion";
 const Hireme = () => {
   return (
-    <div className=" h-screen flex flex-col gap-16 items-center justify-center text-center">
+    <div  className=" h-screen flex flex-col gap-16 items-center justify-center text-center">
         <h2 className="text-6xl">
          <h4 className={styletext.gradienttext}> Do you have a project?</h4>
     </h2>
@@ -22,7 +22,7 @@ const Hireme = () => {
               />
             </defs>
             <text fill="#000">
-              <textPath xlinkHref="#circlePath" className="text-xl">
+              <textPath xlinkHref="#circlePath" style={{color:"skyblue"}} className="text-xl">
                 
                 Full Stack Web Developer & Designer
                 

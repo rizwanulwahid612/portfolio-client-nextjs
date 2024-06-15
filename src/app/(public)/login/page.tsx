@@ -2,7 +2,7 @@ import React from 'react'
 import Login from '../../../components/view/Auth/Login'
 const SigninPage = () => {
   return (
-  <div style={{display:'flex',justifyContent:'center',alignItems:'center',justifyItems:'center',marginTop:'30vh'}}>
+  <div style={{display:'flex',justifyContent:'center',alignItems:'center',justifyItems:'center',marginTop:'30vh',color:"white"}}>
      <Login/>
   </div>
   ) 
